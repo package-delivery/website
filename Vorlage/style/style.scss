@@ -5,6 +5,7 @@ $backgroundColor: #E8EDDF;
 $yellow: rgb(241, 197, 14);
 $red: rgb(219, 84, 90);
 $blue: rgb(44, 204, 196);
+$footerColor: rgb(41, 41, 41);
 
 
 *{
@@ -24,13 +25,6 @@ body{
         margin: 0%;
     }
 
-    //sets width of box image at top of page
-    img{
-        width: 500px;
-        margin-left: 15%;
-        display: inline-block;
-    }
-
     //sets it so all divs are inline
     div{
         display: inline-block;
@@ -48,10 +42,19 @@ body{
     }
 }
 
+.topPartDiv{
+    display: table;
+    margin: 0 auto;
+}
+
+.boxImage{
+    max-width: 500px;
+}
 //changes the actual About us Text
 .aboutUsText{
-    font-size: 50px;
+    font-size: 30px;
     margin-bottom: 0%;
+    margin-top: 10%;
 }
 
 //Changes Paketlieferservice text
@@ -155,7 +158,25 @@ body{
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         position: absolute;
         font-size: 50px;
-        top: 45%;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    button{
+        background-color: white;
+        width: 150px;
+        height: 50px;
+        border: 0px;
+        &:hover{
+            background:rgb(230, 230, 230);
+            cursor: pointer;
+        }
+        color: black;
+        font-size: 20px;
+        font-family: 'Jura', sans-serif;
+        position: absolute;
+        font-size: 50px;
+        top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -164,9 +185,24 @@ body{
     color: white;
 }
 
-.centered{
+.centeredText{
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
+
+
+.footer{
+    height: 200px;
+    width:  100%;
+    display: inline-block;
+    background-color: $footerColor;
+    p{
+        position: relative;
+        top: 50%;
+        margin-left: 62%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+}

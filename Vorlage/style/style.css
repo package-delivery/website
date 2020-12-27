@@ -14,12 +14,6 @@ body header {
   margin: 0%;
 }
 
-body img {
-  width: 500px;
-  margin-left: 15%;
-  display: inline-block;
-}
-
 body div {
   display: inline-block;
 }
@@ -34,9 +28,19 @@ body div {
   margin-bottom: 10px;
 }
 
+.topPartDiv {
+  display: table;
+  margin: 0 auto;
+}
+
+.boxImage {
+  max-width: 500px;
+}
+
 .aboutUsText {
-  font-size: 50px;
+  font-size: 30px;
   margin-bottom: 0%;
+  margin-top: 10%;
 }
 
 .lieferservice {
@@ -153,17 +157,54 @@ body div {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   position: absolute;
   font-size: 50px;
-  top: 45%;
+  top: 20%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
-.centered {
+.paralexxImage button {
+  background-color: white;
+  width: 150px;
+  height: 50px;
+  border: 0px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Jura', sans-serif;
   position: absolute;
-  top: 50%;
+  font-size: 50px;
+  top: 55%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+.paralexxImage button:hover {
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+.centeredText {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.footer {
+  height: 200px;
+  width: 100%;
+  display: inline-block;
+  background-color: #292929;
+}
+
+.footer p {
+  position: relative;
+  top: 50%;
+  margin-left: 62%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */
