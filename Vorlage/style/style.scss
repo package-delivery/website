@@ -1,0 +1,172 @@
+$primButton : rgba(136, 255, 0, 0.644);
+$headerColor : rgb(251, 251, 255);
+$backgroundColor: #E8EDDF;
+
+$yellow: rgb(241, 197, 14);
+$red: rgb(219, 84, 90);
+$blue: rgb(44, 204, 196);
+
+
+*{
+    margin: 0;
+}
+body{
+
+    //sets background color of body
+    background-color: $backgroundColor;
+
+    //sets background color of header
+    header{
+        background-image: url(../images/FadeBackground.png);
+        background-position: 50px;
+        padding: 0%;
+        border: 0%;
+        margin: 0%;
+    }
+
+    //sets width of box image at top of page
+    img{
+        width: 500px;
+        margin-left: 15%;
+        display: inline-block;
+    }
+
+    //sets it so all divs are inline
+    div{
+        display: inline-block;
+    }
+}
+
+//changes everything inside the About us div
+//(About us, Paketlieferservice, p, button)
+.aboutUsDiv{
+    display: inline-block;
+    vertical-align: top;
+    font-family: Arial;
+    p{
+        margin-bottom: 10px;
+    }
+}
+
+//changes the actual About us Text
+.aboutUsText{
+    font-size: 50px;
+    margin-bottom: 0%;
+}
+
+//Changes Paketlieferservice text
+.lieferservice{
+    display:block;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: $yellow;
+    font-size: 50px;
+    margin-top: 0%;
+}
+
+//changes the logo at the very top of the webpage
+.logo{
+    width: 150px;
+    margin-left: 20%;
+}
+
+//changes the Bestell button
+.bestellButton{
+    background-color: $red;
+    width: 300px;
+    height: 50px;
+    border: 0px;
+    &:hover{
+        background:rgb(214, 59, 66);
+        cursor: pointer;
+    }
+    color: white;
+    font-size: 20px;
+}
+
+.boxAlign{
+    display: flex;
+    justify-content: center;
+}
+
+//sets each box
+.box{
+    height: 400px;
+    width:  400px;
+    display: inline-block;
+    h1{
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        color: white;
+    }
+    p{
+        text-align: center;
+        padding: 10%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 18px;
+        color: white;
+    }
+    img{
+        margin: 0;
+        width: 80px;
+        padding-left: 42%;
+        padding-top: 5%;
+    }
+    button{
+        background-color: white;
+        width: 150px;
+        height: 50px;
+        border: 0px;
+        &:hover{
+            background:rgb(230, 230, 230);
+            cursor: pointer;
+        }
+        color: black;
+        font-size: 20px;
+        margin-left: 32%;
+        margin-top: 2%;
+        font-family: 'Jura', sans-serif;
+    }
+}
+
+.yellow{
+    background-color: $yellow;
+}
+
+.red{
+    background-color: $red;
+}
+
+.blue{
+    background-color: $blue;
+}
+
+.paralexxImage{
+    img{
+        margin-left: 0;
+        padding-top: 20px;
+        height: 500px;
+        width: 100%;
+        object-fit: cover;
+    }
+    h1{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        position: absolute;
+        font-size: 50px;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
