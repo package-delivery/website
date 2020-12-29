@@ -1,0 +1,208 @@
+$primButton : rgba(136, 255, 0, 0.644);
+$headerColor : rgb(251, 251, 255);
+$backgroundColor: #E8EDDF;
+
+$yellow: rgb(241, 197, 14);
+$red: rgb(219, 84, 90);
+$blue: rgb(44, 204, 196);
+$footerColor: rgb(41, 41, 41);
+
+
+*{
+    margin: 0;
+}
+body{
+
+    //sets background color of body
+    background-color: $backgroundColor;
+
+    //sets background color of header
+    header{
+        background-image: url(../images/FadeBackground.png);
+        background-position: 50px;
+        padding: 0%;
+        border: 0%;
+        margin: 0%;
+    }
+
+    //sets it so all divs are inline
+    div{
+        display: inline-block;
+    }
+}
+
+//changes everything inside the About us div
+//(About us, Paketlieferservice, p, button)
+.aboutUsDiv{
+    display: inline-block;
+    vertical-align: top;
+    font-family: Arial;
+    p{
+        margin-bottom: 10px;
+    }
+}
+
+.topPartDiv{
+    display: table;
+    margin: 0 auto;
+}
+
+.boxImage{
+    max-width: 500px;
+}
+//changes the actual About us Text
+.aboutUsText{
+    font-size: 30px;
+    margin-bottom: 0%;
+    margin-top: 10%;
+}
+
+//Changes Paketlieferservice text
+.lieferservice{
+    display:block;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: $yellow;
+    font-size: 50px;
+    margin-top: 0%;
+}
+
+//changes the logo at the very top of the webpage
+.logo{
+    width: 150px;
+    margin-left: 20%;
+}
+
+//changes the Bestell button
+.bestellButton{
+    background-color: $red;
+    width: 300px;
+    height: 50px;
+    border: 0px;
+    &:hover{
+        background:rgb(214, 59, 66);
+        cursor: pointer;
+    }
+    color: white;
+    font-size: 20px;
+}
+
+.boxAlign{
+    display: flex;
+    justify-content: center;
+}
+
+//sets each box
+.box{
+    height: 400px;
+    width:  400px;
+    display: inline-block;
+    h1{
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        color: white;
+    }
+    p{
+        text-align: center;
+        padding: 10%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 18px;
+        color: white;
+    }
+    img{
+        margin: 0;
+        width: 80px;
+        padding-left: 42%;
+        padding-top: 5%;
+    }
+    button{
+        background-color: white;
+        width: 150px;
+        height: 50px;
+        border: 0px;
+        &:hover{
+            background:rgb(230, 230, 230);
+            cursor: pointer;
+        }
+        color: black;
+        font-size: 20px;
+        margin-left: 32%;
+        margin-top: 2%;
+        font-family: 'Jura', sans-serif;
+    }
+}
+
+.yellow{
+    background-color: $yellow;
+}
+
+.red{
+    background-color: $red;
+}
+
+.blue{
+    background-color: $blue;
+}
+
+.paralexxImage{
+    img{
+        margin-left: 0;
+        padding-top: 20px;
+        height: 500px;
+        width: 100%;
+        object-fit: cover;
+    }
+    h1{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        position: absolute;
+        font-size: 50px;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    button{
+        background-color: white;
+        width: 150px;
+        height: 50px;
+        border: 0px;
+        &:hover{
+            background:rgb(230, 230, 230);
+            cursor: pointer;
+        }
+        color: black;
+        font-size: 20px;
+        font-family: 'Jura', sans-serif;
+        position: absolute;
+        font-size: 50px;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centeredText{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.footer{
+    height: 200px;
+    width:  100%;
+    display: inline-block;
+    background-color: $footerColor;
+    p{
+        position: relative;
+        top: 50%;
+        margin-left: 62%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+}
