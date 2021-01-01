@@ -1,12 +1,28 @@
-$primButton : rgba(136, 255, 0, 0.644);
-$headerColor : rgb(251, 251, 255);
-$backgroundColor: #E8EDDF;
+$primButton     :#49C6E5;
+$primButtonHover:#2F9395;
+$headerColor    :#F7D969;
+$backgroundColor:#E8EDDF;
 
-$yellow: rgb(241, 197, 14);
-$red: rgb(219, 84, 90);
-$blue: rgb(44, 204, 196);
-$footerColor: rgb(41, 41, 41);
+$firstBox       :#309397;
+$secondBox      :#E46472;
+$thirdBox       :#F9BE7C;
+$footerColor    :#292929;
 
+/*
+
+old color palette
+
+$primButton     :#49C6E5;
+$primButtonHover:#2F9395;
+$headerColor    :#F7D969;
+$backgroundColor:#E8EDDF;
+
+$firstBox       :#2F9395;
+$secondBox      :#F16A43;
+$thirdBox       :#EC1C4B;
+$footerColor    :#292929;
+
+*/
 
 *{
     margin: 0;
@@ -18,7 +34,7 @@ body{
 
     //sets background color of header
     header{
-        background-image: url(../images/FadeBackground.png);
+        background-color: $headerColor;
         background-position: 50px;
         padding: 0%;
         border: 0%;
@@ -38,6 +54,7 @@ body{
     vertical-align: top;
     font-family: Arial;
     p{
+        font-size: 20px;
         margin-bottom: 10px;
     }
 }
@@ -48,7 +65,8 @@ body{
 }
 
 .boxImage{
-    max-width: 500px;
+    max-width: 350px;
+    margin-right: 50px;
 }
 //changes the actual About us Text
 .aboutUsText{
@@ -61,7 +79,7 @@ body{
 .lieferservice{
     display:block;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: $yellow;
+    color: $primButton;
     font-size: 50px;
     margin-top: 0%;
 }
@@ -74,12 +92,12 @@ body{
 
 //changes the Bestell button
 .bestellButton{
-    background-color: $red;
+    background-color: $primButton;
     width: 300px;
     height: 50px;
     border: 0px;
     &:hover{
-        background:rgb(214, 59, 66);
+        background: $primButtonHover;
         cursor: pointer;
     }
     color: white;
@@ -135,15 +153,15 @@ body{
 }
 
 .yellow{
-    background-color: $yellow;
+    background-color: $firstBox;
 }
 
 .red{
-    background-color: $red;
+    background-color: $secondBox;
 }
 
 .blue{
-    background-color: $blue;
+    background-color: $thirdBox;
 }
 
 .paralexxImage{

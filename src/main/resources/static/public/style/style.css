@@ -1,3 +1,18 @@
+/*
+
+old color palette
+
+$primButton     :#49C6E5;
+$primButtonHover:#2F9395;
+$headerColor    :#F7D969;
+$backgroundColor:#E8EDDF;
+
+$firstBox       :#2F9395;
+$secondBox      :#F16A43;
+$thirdBox       :#EC1C4B;
+$footerColor    :#292929;
+
+*/
 * {
   margin: 0;
 }
@@ -7,7 +22,7 @@ body {
 }
 
 body header {
-  background-image: url(../images/FadeBackground.png);
+  background-color: #F7D969;
   background-position: 50px;
   padding: 0%;
   border: 0%;
@@ -25,6 +40,7 @@ body div {
 }
 
 .aboutUsDiv p {
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
@@ -34,7 +50,8 @@ body div {
 }
 
 .boxImage {
-  max-width: 500px;
+  max-width: 350px;
+  margin-right: 50px;
 }
 
 .aboutUsText {
@@ -46,7 +63,7 @@ body div {
 .lieferservice {
   display: block;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: #f1c50e;
+  color: #49C6E5;
   font-size: 50px;
   margin-top: 0%;
 }
@@ -57,7 +74,7 @@ body div {
 }
 
 .bestellButton {
-  background-color: #db545a;
+  background-color: #49C6E5;
   width: 300px;
   height: 50px;
   border: 0px;
@@ -66,7 +83,7 @@ body div {
 }
 
 .bestellButton:hover {
-  background: #d63b42;
+  background: #2F9395;
   cursor: pointer;
 }
 
@@ -127,15 +144,15 @@ body div {
 }
 
 .yellow {
-  background-color: #f1c50e;
+  background-color: #309397;
 }
 
 .red {
-  background-color: #db545a;
+  background-color: #E46472;
 }
 
 .blue {
-  background-color: #2cccc4;
+  background-color: #F9BE7C;
 }
 
 .paralexxImage {
