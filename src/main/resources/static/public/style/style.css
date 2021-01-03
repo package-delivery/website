@@ -78,6 +78,7 @@ body div {
   width: 300px;
   height: 50px;
   border: 0px;
+  border-radius: 20px;
   color: white;
   font-size: 20px;
 }
@@ -131,6 +132,7 @@ body div {
   width: 150px;
   height: 50px;
   border: 0px;
+  border-radius: 20px;
   color: black;
   font-size: 20px;
   margin-left: 32%;
@@ -157,7 +159,6 @@ body div {
 
 .paralexxImage {
   position: relative;
-  text-align: center;
   color: white;
 }
 
@@ -185,11 +186,12 @@ body div {
   width: 150px;
   height: 50px;
   border: 0px;
+  border-radius: 20px;
   color: black;
   font-size: 20px;
   font-family: 'Jura', sans-serif;
   position: absolute;
-  font-size: 50px;
+  font-size: 25px;
   top: 55%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);

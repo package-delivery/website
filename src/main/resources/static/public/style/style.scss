@@ -96,6 +96,7 @@ body{
     width: 300px;
     height: 50px;
     border: 0px;
+    border-radius: 20px;
     &:hover{
         background: $primButtonHover;
         cursor: pointer;
@@ -140,6 +141,7 @@ body{
         width: 150px;
         height: 50px;
         border: 0px;
+        border-radius: 20px;
         &:hover{
             background:rgb(230, 230, 230);
             cursor: pointer;
@@ -185,6 +187,7 @@ body{
         width: 150px;
         height: 50px;
         border: 0px;
+        border-radius: 20px;
         &:hover{
             background:rgb(230, 230, 230);
             cursor: pointer;
@@ -193,13 +196,12 @@ body{
         font-size: 20px;
         font-family: 'Jura', sans-serif;
         position: absolute;
-        font-size: 50px;
+        font-size: 25px;
         top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     position: relative;
-    text-align: center;
     color: white;
 }
 
