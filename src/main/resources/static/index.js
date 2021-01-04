@@ -1,7 +1,7 @@
 // Get element references
-var confirmBtn = document.getElementById('confirmPosition');
+var addPoint = document.getElementById('addPoint');
 var onClickPositionView = document.getElementById('onClickPositionView');
-var printPositions = document.getElementById('printPositions');
+var confirmPoints = document.getElementById('confirmPoints');
 
 // Initialize locationPicker plugin
 var lp = new locationPicker('map', {
@@ -17,7 +17,7 @@ var locationCounter = 0;
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 // Listen to button onclick event
-confirmBtn.onclick = function () {
+addPoint.onclick = function () {
     // Get current location and show it in HTML
     var location = lp.getMarkerPosition();
     onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
@@ -28,7 +28,7 @@ confirmBtn.onclick = function () {
 };
 
 
-printPositions.onclick = function() {
+confirmPoints.onclick = function() {
     console.log(positions);
     /*
     for(let i = 0; i < positions.length; i++) {
@@ -56,8 +56,29 @@ printPositions.onclick = function() {
             matrix[i][a] = haversine_distance(mk1, mk2);
         }
     }
+    // Add newline at the beginning of every line
+    for(let i = 1; i < matrix.length; i++) {
+        matrix[i][0] = '\n' + matrix[i][0];
+    }
+
+    // Change
+
+    console.log(matrix.toString());
     console.log(matrix);
+
+    // Send request to server with matrix
+    requestServer(matrix);
+    // Reset map
+
 };
+
+function requestServer(matrix) {
+    const url = '/matrix';
+    fetch(url, {
+        method: 'POST',
+        body: matrix,
+    })  .then(response => console.log(response.text()));
+}
 
 
 function haversine_distance(mk1, mk2) {
