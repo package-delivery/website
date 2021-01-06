@@ -1,0 +1,35 @@
+buildscript {
+	repositories { mavenCentral() }
+	dependencies { classpath 'org.ajoberstar:gradle-git:0.2.3' }
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.packagedelivery'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '15'
+
+repositories {
+	mavenCentral()
+	maven {
+		url 'https://jitpack.io'
+		credentials {username authToken}
+	}
+}
+
+
+
+dependencies {
+	implementation 'com.github.package-delivery:package-delivery:master-SNAPSHOT'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+
