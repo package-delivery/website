@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #E8EDDF;
+}
+
+body header {
+  background-image: url(../images/FadeBackground.png);
+  background-position: 50px;
+  padding: 0%;
+  border: 0%;
+  margin: 0%;
+}
+
+body div {
+  display: inline-block;
+}
+
+.aboutUsDiv {
+  display: inline-block;
+  vertical-align: top;
+  font-family: Arial;
+}
+
+.aboutUsDiv p {
+  margin-bottom: 10px;
+}
+
+.topPartDiv {
+  display: table;
+  margin: 0 auto;
+}
+
+.boxImage {
+  max-width: 500px;
+}
+
+.aboutUsText {
+  font-size: 30px;
+  margin-bottom: 0%;
+  margin-top: 10%;
+}
+
+.lieferservice {
+  display: block;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #f1c50e;
+  font-size: 50px;
+  margin-top: 0%;
+}
+
+.logo {
+  width: 150px;
+  margin-left: 20%;
+}
+
+.bestellButton {
+  background-color: #db545a;
+  width: 300px;
+  height: 50px;
+  border: 0px;
+  color: white;
+  font-size: 20px;
+}
+
+.bestellButton:hover {
+  background: #d63b42;
+  cursor: pointer;
+}
+
+.boxAlign {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.box {
+  height: 400px;
+  width: 400px;
+  display: inline-block;
+}
+
+.box h1 {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 40px;
+  color: white;
+}
+
+.box p {
+  text-align: center;
+  padding: 10%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  color: white;
+}
+
+.box img {
+  margin: 0;
+  width: 80px;
+  padding-left: 42%;
+  padding-top: 5%;
+}
+
+.box button {
+  background-color: white;
+  width: 150px;
+  height: 50px;
+  border: 0px;
+  color: black;
+  font-size: 20px;
+  margin-left: 32%;
+  margin-top: 2%;
+  font-family: 'Jura', sans-serif;
+}
+
+.box button:hover {
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+.yellow {
+  background-color: #f1c50e;
+}
+
+.red {
+  background-color: #db545a;
+}
+
+.blue {
+  background-color: #2cccc4;
+}
+
+.paralexxImage {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.paralexxImage img {
+  margin-left: 0;
+  padding-top: 20px;
+  height: 500px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.paralexxImage h1 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  position: absolute;
+  font-size: 50px;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.paralexxImage button {
+  background-color: white;
+  width: 150px;
+  height: 50px;
+  border: 0px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Jura', sans-serif;
+  position: absolute;
+  font-size: 50px;
+  top: 55%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.paralexxImage button:hover {
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+.centeredText {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.footer {
+  height: 200px;
+  width: 100%;
+  display: inline-block;
+  background-color: #292929;
+}
+
+.footer p {
+  position: relative;
+  top: 50%;
+  margin-left: 62%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */
