@@ -1,11 +1,11 @@
 $primButton     :#49C6E5;
 $primButtonHover:#2F9395;
-$headerColor    :#F7D969;
+$headerColor    :#FFC350;
 $backgroundColor:#E8EDDF;
 
-$firstBox       :#309397;
-$secondBox      :#E46472;
-$thirdBox       :#F9BE7C;
+$firstBox       :#49C6E5;
+$secondBox      :#E6646E;
+$thirdBox       :#FFC350;
 $footerColor    :#292929;
 
 /*
@@ -67,6 +67,7 @@ body{
 .boxImage{
     max-width: 350px;
     margin-right: 50px;
+    margin-top: 20px;
 }
 //changes the actual About us Text
 .aboutUsText{
@@ -86,7 +87,7 @@ body{
 
 //changes the logo at the very top of the webpage
 .logo{
-    width: 150px;
+    width: 250px;
     margin-left: 20%;
 }
 
@@ -210,6 +211,15 @@ body{
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }
 
 
