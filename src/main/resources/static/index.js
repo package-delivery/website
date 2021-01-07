@@ -13,6 +13,8 @@ var lp = new locationPicker('map', {
 });
 
 var positions = [];
+var marker = [];
+var labels = []
 var locationCounter = 0;
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
@@ -23,13 +25,15 @@ addPoint.onclick = function () {
     onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
     const p = {lat: location.lat, lng: location.lng};
     const mk1 = new google.maps.Marker({position: p, map: lp.map, label: alphabet[locationCounter]})
+    marker.push(mk1)
+    labels.push(alphabet[locationCounter]);
     locationCounter++;
     positions.push(p);
 };
 
 
 confirmPoints.onclick = function() {
-    console.log(positions);
+    console.log("all positions: " + positions.length);
     /*
     for(let i = 0; i < positions.length; i++) {
         const mk1 = new google.maps.Marker({position: positions[i], map: lp.map});
@@ -39,12 +43,12 @@ confirmPoints.onclick = function() {
     */
 
     // Create two-dimensional array
-    var matrix = new Array(positions.length);
-    for(let i = 0; i < positions.length; i++) {
-        matrix[i] = new Array(positions.length);
+    var matrix = new Array(positions.length+1);
+    for(let i = 0; i < positions.length+1; i++) {
+        matrix[i] = new Array(positions.length+1);
     }
     // Fill city names
-    for(let i = 1; i < positions.length; i++) {
+    for(let i = 1; i < positions.length+1; i++) {
         matrix[i][0] = alphabet[i-1];
         matrix[0][i] = alphabet[i-1];
     }
@@ -54,6 +58,9 @@ confirmPoints.onclick = function() {
             const mk1 = new google.maps.Marker({position: positions[a], map: lp.map, label: alphabet[locationCounter]});
             const mk2 = new google.maps.Marker({position: positions[i], map: lp.map, label: alphabet[locationCounter]});
             matrix[i][a] = haversine_distance(mk1, mk2);
+            // Remove marker
+            mk1.setMap(null);
+            mk2.setMap(null);
         }
     }
     // Add newline at the beginning of every line
@@ -77,7 +84,35 @@ function requestServer(matrix) {
     fetch(url, {
         method: 'POST',
         body: matrix,
-    })  .then(response => console.log(response.text()));
+    })  .then(response => response.text())
+    .then(response => {
+        response = response.slice(response.indexOf("sortedCities=[") + 14);
+        let cityArray = response.split("City{cityName=");
+        console.log(cityArray);
+        for(let i = 0; i < cityArray.length; i++) {
+            if(cityArray[i].length === 0) {
+                cityArray.shift();
+                i--;
+            }else {
+                cityArray[i] = cityArray[i].slice(1, cityArray[i].indexOf("'", 1));
+            }
+        }
+        console.log(cityArray);
+        printLines(cityArray);
+    });
+}
+
+function printLines(cityArray) {
+    for(let i = 0; i < cityArray.length; i++) {
+        let counter = labels.indexOf(cityArray[i]);
+        let counter1 = labels.indexOf(cityArray[i+1]);
+        console.log(cityArray[i] + ": " + cityArray[i+1]);
+        var line = new google.maps.Polyline({path: [positions[counter], positions[counter1]], map: lp.map});
+        console.log(positions);
+        console.log(marker);
+        console.log(cityArray);
+        console.log(labels);
+    }
 }
 
 
