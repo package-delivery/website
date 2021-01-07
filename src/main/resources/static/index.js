@@ -53,10 +53,10 @@ confirmPoints.onclick = function() {
         matrix[0][i] = alphabet[i-1];
     }
     // Fill distances
-    for(let i = 1; i < positions.length; i++) {
-        for(let a = 1; a < positions.length; a++) {
-            const mk1 = new google.maps.Marker({position: positions[a], map: lp.map, label: alphabet[locationCounter]});
-            const mk2 = new google.maps.Marker({position: positions[i], map: lp.map, label: alphabet[locationCounter]});
+    for(let i = 1; i < positions.length +1; i++) {
+        for(let a = 1; a < positions.length+1; a++) {
+            const mk1 = new google.maps.Marker({position: positions[a-1], map: lp.map, label: alphabet[locationCounter]});
+            const mk2 = new google.maps.Marker({position: positions[i-1], map: lp.map, label: alphabet[locationCounter]});
             matrix[i][a] = haversine_distance(mk1, mk2);
             // Remove marker
             mk1.setMap(null);
