@@ -85,7 +85,7 @@ function requestServer(matrix) {
         method: 'POST',
         body: matrix,
     })  .then(response => response.text())
-    .then(response => {
+        .then(response => {
         response = response.slice(response.indexOf("sortedCities=[") + 14);
         let cityArray = response.split("City{cityName=");
         console.log(cityArray);
