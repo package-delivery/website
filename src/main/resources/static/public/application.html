@@ -13,14 +13,15 @@
         }
     </style>
     <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/StyleApplication.css" />
     <title>GOLLER CHEF</title>
-	<link rel="shortcut icon" href="./images/favicon.ico">
+    <link rel="shortcut icon" href="./images/favicon.ico">
 </head>
 
 <header>
 
     <a href="./index.html">
-        <img  class="logo" src="images/EimLogoAdjusted.png" style="margin-top: 3px">
+        <img  class="logo" src="images/EimLogoAdjustedNewColorsDunkel.png" style="margin-top: 3px">
     </a>
 
 </header>
@@ -28,10 +29,12 @@
 <body>
     <br>
     <div id="map"></div>
-    <br>
-    <button id="addPoint">Add Point</button>
-    <br>
-    <p>On click position: <span id="onClickPositionView"></span></p>
-    <button id="confirmPoints">Confirm Points</button>
+    <div class="buttons">
+        <button id="addPoint" class="leftButton">Add Point</button>
+
+        <p>Confirm Position on click!<span id="onClickPositionView"></span></p>
+
+        <button id="confirmPoints" class="rightButton">Confirm Points</button>
+    </div>
 </body>
 </html>

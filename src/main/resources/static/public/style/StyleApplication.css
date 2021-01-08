@@ -1,0 +1,34 @@
+.leftButton {
+  background-color: #FFC350;
+}
+
+.leftButton:hover {
+  background: #CC9B41;
+  cursor: pointer;
+}
+
+.rightButton {
+  background-color: #94FA92;
+}
+
+.rightButton:hover {
+  background: #77DD77;
+  cursor: pointer;
+}
+
+.buttons {
+  display: inline;
+}
+
+.buttons button {
+  color: black;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-family: 'Jura', sans-serif;
+  width: 150px;
+  height: 50px;
+  border: 0px;
+  border-radius: 20px;
+}
+/*# sourceMappingURL=StyleApplication.css.map */

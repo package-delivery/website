@@ -6,10 +6,10 @@ var confirmPoints = document.getElementById('confirmPoints');
 // Initialize locationPicker plugin
 var lp = new locationPicker('map', {
     // You can omit this, defaults to true
-    setCurrentPosition: true, 
+    setCurrentPosition: true,
 }, {
     // You can set any google map options here, zoom defaults to 15
-    zoom: 5 
+    zoom: 5
 });
 
 var positions = [];
@@ -118,15 +118,15 @@ function printLines(cityArray) {
 
 function haversine_distance(mk1, mk2) {
     // Radius of the Earth in miles
-    var R = 3958.8; 
+    var R = 3958.8;
     // Convert degrees to radians
-    var rlat1 = mk1.position.lat() * (Math.PI/180); 
+    var rlat1 = mk1.position.lat() * (Math.PI/180);
     // Convert degrees to radians
-    var rlat2 = mk2.position.lat() * (Math.PI/180); 
+    var rlat2 = mk2.position.lat() * (Math.PI/180);
     // Radian difference (latitudes)
-    var difflat = rlat2-rlat1; 
+    var difflat = rlat2-rlat1;
     // Radian difference (longitudes)
-    var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); 
+    var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180);
 
     var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
     return d;

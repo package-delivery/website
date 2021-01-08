@@ -22,7 +22,7 @@ body {
 }
 
 body header {
-  background-color: #F7D969;
+  background-color: #FFC350;
   background-position: 50px;
   padding: 0%;
   border: 0%;
@@ -52,6 +52,7 @@ body div {
 .boxImage {
   max-width: 350px;
   margin-right: 50px;
+  margin-top: 20px;
 }
 
 .aboutUsText {
@@ -69,7 +70,7 @@ body div {
 }
 
 .logo {
-  width: 150px;
+  width: 250px;
   margin-left: 20%;
 }
 
@@ -146,15 +147,15 @@ body div {
 }
 
 .yellow {
-  background-color: #309397;
+  background-color: #49C6E5;
 }
 
 .red {
-  background-color: #E46472;
+  background-color: #E6646E;
 }
 
 .blue {
-  background-color: #F9BE7C;
+  background-color: #FFC350;
 }
 
 .paralexxImage {
@@ -209,6 +210,10 @@ body div {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  text-shadow: -1px -1px 0 #000,   1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .footer {
