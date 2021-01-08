@@ -7,9 +7,19 @@
 }
 
 .rightButton{
+    float: right;
     background-color: #94FA92;
     &:hover{
         background: #77DD77;
+        cursor: pointer;
+    }
+}
+
+.clearButton{
+    float: right;
+    background-color: #DF4D49;
+    &:hover{
+        background: #C03032;
         cursor: pointer;
     }
 }

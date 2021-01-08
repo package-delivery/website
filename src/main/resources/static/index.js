@@ -23,7 +23,7 @@ const alphabet = "abcdefghijklmnopqrstuvwxyz";
 addPoint.onclick = function () {
     // Get current location and show it in HTML
     var location = lp.getMarkerPosition();
-    onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+    onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + '° lat, ' + location.lng + '° lng';
     const p = {lat: location.lat, lng: location.lng};
     const mk1 = new google.maps.Marker({position: p, map: lp.map, label: alphabet[locationCounter]})
     marker.push(mk1)
@@ -101,7 +101,8 @@ function requestServer(matrix) {
             }
 
             lengthString = lengthString.slice(lengthString.indexOf("Cities{distance=") + 16, lengthString.indexOf(","));
-            onClickPositionView.innerHTML = "Length of the route: " + lengthString + " km";
+            var lengthFloat = parseFloat(lengthString).toFixed(2)
+            onClickPositionView.innerHTML = "Length of the route: " + lengthFloat + " km";
             printLines(cityArray);
     });
 }
