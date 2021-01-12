@@ -110,10 +110,14 @@ function requestServer(matrix) {
 
 
 function printLines(cityArray) {
-    for(let i = 0; i < cityArray.length; i++) {
+    let waiting_time = 0;
+    for(let i = 0; i < cityArray.length-1; i++) {
         let counter = labels.indexOf(cityArray[i]);
         let counter1 = labels.indexOf(cityArray[i+1]);
-        var line = new google.maps.Polyline({path: [positions[counter], positions[counter1]], map: lp.map});
+        setTimeout(() => {
+            var line = new google.maps.Polyline({path: [positions[counter], positions[counter1]], map: lp.map});
+        }, waiting_time);
+        waiting_time = waiting_time + 500;
     }
 }
 
@@ -133,6 +137,7 @@ function haversine_distance(mk1, mk2) {
     var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
     return d;
 }
+
 
 // https://developers.google.com/maps/documentation/javascript/markers
 // https://cloud.google.com/blog/products/maps-platform/how-calculate-distances-map-maps-javascript-api
