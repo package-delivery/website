@@ -30,9 +30,19 @@
     <br>
     <div id="map"></div>
     <div class="buttons">
+        <label for="algorithmchooser">Choose a algorithm:</label>
+
+        <select name="algo" id="algorithmchooser">
+            <option value="nn">Nearest Neighbor</option>
+            <option value="ni">Nearest Insertion</option>
+            <option value="ch">Convex Hull</option>
+            <option value="bf">Brute Force</option>
+            <option value="bb">Better Brute Force</option>
+            <option value="sa">Simulated Annealing</option>
+        </select>
         <button id="addPoint" class="leftButton">Add Point</button>
         <span id="onClickPositionView"></span>
-        <button id="clearPoints" class="clearButton" >clear Points</button>
+        <button id="clearPoints" class="clearButton" >Clear Points</button>
         <button id="confirmPoints" class="rightButton">Confirm Points</button>
     </div>
 </body>

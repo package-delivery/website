@@ -75,11 +75,11 @@ confirmPoints.onclick = function() {
 
     // Send request to server with matrix
     requestServer(matrix);
-    // Reset map
-
 };
 
 function requestServer(matrix) {
+    let e = document.getElementById("algorithmchooser");
+    matrix = e.value + matrix;
     console.log(matrix);
     const url = '/matrix';
     fetch(url, {
