@@ -80,6 +80,7 @@ confirmPoints.onclick = function() {
 function requestServer(matrix) {
     let e = document.getElementById("algorithmchooser");
     matrix = e.value + matrix;
+    if(e.value === "ch")
     console.log(matrix);
     const url = '/matrix';
     fetch(url, {
@@ -106,8 +107,6 @@ function requestServer(matrix) {
             printLines(cityArray);
     });
 }
-
-
 
 function printLines(cityArray) {
     let waiting_time = 0;

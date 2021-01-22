@@ -15,16 +15,19 @@ sourceCompatibility = '15'
 
 repositories {
 	mavenCentral()
-	maven {
+	/*maven {
 		url 'https://jitpack.io'
 		credentials {username authToken}
-	}
+	}*/
 }
 
 
 
 dependencies {
+	/*
     implementation 'com.github.package-delivery:package-delivery:v1.2'
+    */
+	implementation files('libs/package-delivery1-1.0-SNAPSHOT.jar')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

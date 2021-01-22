@@ -32,9 +32,18 @@ public class WebsiteApplication {
 		}else if(algorithm.equals("ni")) {
 			NearestInsertion ni = new NearestInsertion(CsvReader.getCityMatrix()[0].getCityName());
 			return ni.getResult().toString();
+		}else if(algorithm.equals("sa")) {
+			SimulatedAnnealing sa = new SimulatedAnnealing(CsvReader.getCityMatrix()[0].getCityName());
+		   	return sa.getResult().toString();
 		}else{
 			return "";
 		}
+	}
+
+	@PostMapping
+	public String postCoordinates(@RequestBody String coordinates) {
+	    // Call ConvexHull function with parameter coordinates
+		return coordinates;
 	}
 
 	@GetMapping("/test")
