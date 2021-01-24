@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
     <script type="text/javascript"
             defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEJr7mKXwJy4rHM13HkYAYlPuuqgGBQUU"></script>
     <script src="./node_modules/location-picker/dist/location-picker.min.js"></script>
@@ -9,11 +15,10 @@
     <style type="text/css">
         #map {
             width: 100%;
-            height: 480px;
+            height: 900px;
         }
     </style>
     <link rel="stylesheet" href="./style/style.css" />
-    <link rel="stylesheet" href="./style/StyleApplication.css" />
     <title>GOLLER CHEF</title>
     <link rel="shortcut icon" href="./images/favicon.ico">
 </head>
@@ -26,13 +31,17 @@
 
 </header>
 
+
+
 <body>
     <br>
     <div id="map"></div>
-    <div class="buttons">
-        <label for="algorithmchooser">Choose a algorithm:</label>
 
-        <select name="algo" id="algorithmchooser">
+    <div style="display: inline; float: left;">
+        <p class="lead" for="algorithmchooser" style="margin-left: 50px; width: 10%; min-width: 200px; margin-top: 20px; margin-bottom: 0px;">Choose a algorithm:</p>
+
+        <select id="alogrithmchooser" class="form-select" aria-label="Default select example" style="margin-left: 50px; width: 10%; min-width: 250px; display: inline;">
+            <option selected>Algorithmus auswählen</option>
             <option value="nn">Nearest Neighbor</option>
             <option value="ni">Nearest Insertion</option>
             <option value="ch">Convex Hull</option>
@@ -40,10 +49,25 @@
             <option value="bb">Better Brute Force</option>
             <option value="sa">Simulated Annealing</option>
         </select>
-        <button id="addPoint" class="leftButton">Add Point</button>
+    </div>
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="display: inline; float: left;">
+        <label class="btn btn-secondary active">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+        </label>
+      </div>
+
+    <div class="buttons" style="float: right; margin-right: 100px; margin-top: 50px;">
+
         <span id="onClickPositionView"></span>
-        <button id="clearPoints" class="clearButton" >Clear Points</button>
-        <button id="confirmPoints" class="rightButton">Confirm Points</button>
+        <button id="clearPoints" class="btn btn-outline-danger btn-lg" style="margin-right: 50px;">Clear Points</button>
+        <button id="confirmPoints" class="btn btn-outline-success btn-lg">Confirm Points</button>
     </div>
 </body>
 </html>

@@ -20,17 +20,17 @@ var locationCounter = 0;
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 // Listen to button onclick event
-addPoint.onclick = function () {
+//addPoint.onclick = function () {
     // Get current location and show it in HTML
-    var location = lp.getMarkerPosition();
-    onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + '° lat, ' + location.lng + '° lng';
-    const p = {lat: location.lat, lng: location.lng};
-    const mk1 = new google.maps.Marker({position: p, map: lp.map, label: alphabet[locationCounter]})
-    marker.push(mk1)
-    labels.push(alphabet[locationCounter]);
-    locationCounter++;
-    positions.push(p);
-};
+    //var location = lp.getMarkerPosition();
+    //onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + '° lat, ' + location.lng + '° lng';
+    //const p = {lat: location.lat, lng: location.lng};
+    //const mk1 = new google.maps.Marker({position: p, map: lp.map, label: alphabet[locationCounter]})
+    //marker.push(mk1)
+    //labels.push(alphabet[locationCounter]);
+    //locationCounter++;
+    //positions.push(p);
+//};
 
 clearPoints.onclick = function () {
     location.reload();
