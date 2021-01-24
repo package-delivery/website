@@ -38,29 +38,28 @@
     <div id="map"></div>
 
     <div style="display: inline; float: left;">
-        <p class="lead" for="algorithmchooser" style="margin-left: 50px; width: 10%; min-width: 200px; margin-top: 20px; margin-bottom: 0px;">Choose a algorithm:</p>
+        <p class="lead" for="algorithmchooser" style="margin-left: 50px; width: 10%; min-width: 200px; margin-top: 20px; margin-bottom: 10px;">Choose a algorithm:</p>
 
-        <select id="alogrithmchooser" class="form-select" aria-label="Default select example" style="margin-left: 50px; width: 10%; min-width: 250px; display: inline;">
-            <option selected>Algorithmus auswählen</option>
-            <option value="nn">Nearest Neighbor</option>
-            <option value="ni">Nearest Insertion</option>
-            <option value="ch">Convex Hull</option>
-            <option value="bf">Brute Force</option>
-            <option value="bb">Better Brute Force</option>
-            <option value="sa">Simulated Annealing</option>
-        </select>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-left: 50px;">
+            <input type="radio" value="nn" class="btn-check" name="btnradio" id="btnAlgo1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo1">Nearest Neightbor</label>
+
+            <input type="radio" value="ni" class="btn-check" name="btnradio" id="btnAlgo2" autocomplete="off">
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo2">Nearest Insertion</label>
+
+            <input type="radio" value="ch" class="btn-check" name="btnradio" id="btnAlgo3" autocomplete="off">
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo3">Convex Hull</label>
+
+            <input type="radio" value="bb" class="btn-check" name="btnradio" id="btnAlgo4" autocomplete="off">
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo4">Brute Force</label>
+
+            <input type="radio" value="sa" class="btn-check" name="btnradio" id="btnAlgo5" autocomplete="off">
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo5">Simulated Annealing</label>
+
+        </div>
     </div>
 
-    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
-      
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
-      
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
-      </div> 
+
 
     <div class="buttons" style="float: right; margin-right: 100px; margin-top: 50px;">
 
