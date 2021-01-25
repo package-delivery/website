@@ -19,7 +19,7 @@
         }
     </style>
     <link rel="stylesheet" href="./style/style.css" />
-    <title>GOLLER CHEF</title>
+    <title>Paketdienst</title>
     <link rel="shortcut icon" href="./images/favicon.ico">
 </head>
 
@@ -42,7 +42,7 @@
 
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-left: 50px;">
             <input type="radio" value="nn" class="btn-check" name="btnradio" id="btnAlgo1" autocomplete="off" checked>
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo1">Nearest Neightbor</label>
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo1">Nearest Neighbor</label>
 
             <input type="radio" value="ni" class="btn-check" name="btnradio" id="btnAlgo2" autocomplete="off">
             <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo2">Nearest Insertion</label>
@@ -68,5 +68,124 @@
         <button id="clearPoints" class="btn btn-outline-danger btn-lg">Clear Points</button>
 
     </div>
+
+    </br>
+
+    <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 200px; margin-bottom: 300px; margin-left: 50px; max-width: 800px; text-align: center;">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Nearest Neighbor
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    Vom fixen Startknoten aus wird der am wenigsten entfernte Knoten besucht. Von dem
+                    zweiten Knoten wird dann wieder der am geringsten entfernte Knoten besucht, solange bis
+                    alle Knoten besucht worden sind. Abschließend wird noch der Startpunkt besucht. So kommt
+                    es zu einem Hamiltonkreis. Dieses Verfahren wählt so meistens eine kurze Tour, jedoch fast
+                    nie die Optimale. Ein weiterer Vorteil ist, dass dieser Algorithmus sehr schnell ist.
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Nearest Insertion
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    Ziel ist es wieder eine relativ kurze Rundreise über alle Knoten zu erhalten. Der Algorithmus
+                    wählt bei jedem Schritt einen Knoten aus, welcher die geringste Entfernung zu einem
+                    Knoten hat, welcher auf der bereits vorhandenen Teilroute vorhanden ist. Dieser Punkt wird
+                    dann in die vorhandene Teilroute so eingebaut, dass diese Teilroute sich am geringsten
+                    verlängert. Die entstandene Route kann nicht länger sein als die doppelte Strecke der
+                    optimalen Route.
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Convex Hull
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    Dieser Algorithmus eignet sich gut, um eine kurze Rundreise zu bestimmen, wenn man die
+                    Koordinaten der Punkte gegeben hat. Mit einer Adjazenzmatrix ist es eher schwieriger,
+                    deshalb eignet sich dieser Algorithmus am besten, um auf unserer Webseite ausgeführt zu
+                    werden.
+                    Bei diesem Algorithmus werden zuerst die äußersten Punkte miteinander verbunden,
+                    sodass man einen Kreis um die restlichen inneren Punkte erhält. Danach wird der Kreis “zusammengedrückt”, die Punkte, die weiter außen liegen, werden
+                    zum Äußeren Kreis hinzugefügt, bis am Ende alle Punkte dem Kreis hinzugefügt wurden.
+                    Ein großer Vorteil dieses Algorithmus ist, dass es durch das Vorgehen von außen nach
+                    innen zu einem Art Kreis kommt, die Route wird sich nie überkreuzen. Da es bewiesen ist,
+                    dass sich die optimale Route niemals kreuzt und auch Convex Hull sich niemals kreuzt,
+                    schafft es dieser heuristische Algorithmus sehr nahe an die optimale Lösung zu kommen.
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                Brute Force
+            </button>
+          </h2>
+          <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                Probiert alle möglichen Routen aus. <br>So wird die bestmögliche Route gefunden. Es ist darauf
+                zu achten, dass man nicht alle Routen doppelt ausprobiert. <br>Bei drei Knoten a,b,c ist z.B. a-
+                >b->c->a dasselbe wie a->c->b->a.
+            </div>
+        </div>
+
+
+
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                Simulated Annealing
+            </button>
+          </h2>
+          <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                Man startet zuerst mit der Nearest Neighbor Route, dann beginnt man zufällig zwei Punkte
+                in der Route zu tauschen. Anschließend schaut man, ob sich die Route dadurch verbessert hat oder
+                nicht.  <br>Man würde zu einem Punkt kommen, an dem sich die Route nicht mehr verbessern
+                kann, aber noch nicht die beste Route ist. Um das so lange wie möglich zu verhindern, wird
+                die Route auch kurzzeitig verschlechtert, um dann wieder ein besseres Ergebnis zu
+                erreichen.  <br>Es kann jedoch vorkommen, dass einige während der Laufzeit berechneten
+                Routen kürzer sind als die final ausgegebene Route, deshalb wird das beste Ergebnis immer
+                gespeichert.  <br>Ob die neue Route akzeptiert wird oder nicht, wird wie folgt berechnet: <br>
+                Wenn die neue Route kürzer als die alte Route ist, dann wird sie klarerweise akzeptiert,
+                ansonsten verwendet man folgende Formel: <br>
+                Math.exp(-delta-sigma) > Math.random(). <br>
+                Dabei ist -delta die negative Differenz der Länge der neuen Route und der Länge der alten
+                Route und sigma ein Toleranzwert, der sich bei jedem Durchgang verringert.
+            </div>
+        </div>
+      </div>
+
 </body>
 </html>
