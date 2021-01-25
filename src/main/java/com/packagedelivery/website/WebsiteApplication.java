@@ -23,10 +23,15 @@ public class WebsiteApplication {
 			System.out.println("Error parsing csv file");
 		}
 		if(algorithm.equals("nn")){
+			System.out.println("Nearest Neighbor begin");
 			NearestNeighbor nn = new NearestNeighbor(CsvReader.getCityMatrix()[0].getCityName());
+			System.out.println("Nearest Neighbor done");
 			return nn.getResult().toString();
 		}else if(algorithm.equals("bf")) {
+			System.out.println("Brute Force begin");
 			BruteForce bf = new BruteForce(CsvReader.getCityMatrix()[0].getCityName());
+			// TODO: Remove this
+			System.out.println("Brute Force done");
 			return bf.getResult().toString();
 		}else if(algorithm.equals("ni")) {
 			NearestInsertion ni = new NearestInsertion(CsvReader.getCityMatrix()[0].getCityName());
