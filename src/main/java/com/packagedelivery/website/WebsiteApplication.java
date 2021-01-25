@@ -3,7 +3,6 @@ package com.packagedelivery.website;
 import com.packagedelivery.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -27,7 +26,7 @@ public class WebsiteApplication {
 			NearestNeighbor nn = new NearestNeighbor(CsvReader.getCityMatrix()[0].getCityName());
 			return nn.getResult().toString();
 		}else if(algorithm.equals("bf")) {
-			BetterBruteForce bf = new BetterBruteForce(CsvReader.getCityMatrix()[0].getCityName());
+			BruteForce bf = new BruteForce(CsvReader.getCityMatrix()[0].getCityName());
 			return bf.getResult().toString();
 		}else if(algorithm.equals("ni")) {
 			NearestInsertion ni = new NearestInsertion(CsvReader.getCityMatrix()[0].getCityName());
