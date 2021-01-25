@@ -43,7 +43,8 @@ map.on('click', function (e) {
 
 
 clearPoints.onclick = function () {
-    location.reload();
+    map.removeLayer("route");
+    map.removeSource("route");
 }
 
 
@@ -62,8 +63,6 @@ confirmPoints.onclick = function() {
     
     for(let i = 1; i < markers.length +1; i++) {
         for(let a = 1; a < markers.length+1; a++) {
-            //const mk1 = new google.maps.Marker({position: positions[a-1], map: lp.map, label: alphabet[locationCounter]});
-            //const mk2 = new google.maps.Marker({position: positions[i-1], map: lp.map, label: alphabet[locationCounter]});
             const mk1 = markers[a-1].getLngLat();
             const mk2 = markers[i-1].getLngLat();
             // Calculate distance
