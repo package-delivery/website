@@ -77,9 +77,18 @@ confirmPoints.onclick = function() {
     requestServer(matrix);
 };
 
-function requestServer(matrix) {
+function getSelectedAlgorithm() {
     let e = document.getElementById("algorithmchooser");
-    matrix = e.value + matrix;
+    let array = e.children;
+    for(let i = 0; i < e.children.length; i++) {
+        if(e.children[i].checked){
+            return e.children[i].value;
+        }
+    }
+}
+
+function requestServer(matrix) {
+    matrix = getSelectedAlgorithm() + matrix;
     if(e.value === "ch")
     console.log(matrix);
     const url = '/matrix';

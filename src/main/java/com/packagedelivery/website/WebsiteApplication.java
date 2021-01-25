@@ -40,7 +40,7 @@ public class WebsiteApplication {
 		}
 	}
 
-	@PostMapping
+	@PostMapping("/coordinates")
 	public String postCoordinates(@RequestBody String coordinates) {
 	    // Call ConvexHull function with parameter coordinates
 		return coordinates;
