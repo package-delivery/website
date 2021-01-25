@@ -26,7 +26,9 @@ public class WebsiteApplication {
 			NearestNeighbor nn = new NearestNeighbor(CsvReader.getCityMatrix()[0].getCityName());
 			return nn.getResult().toString();
 		}else if(algorithm.equals("bf")) {
+			System.out.println("start Brute Force");
 			BruteForce bf = new BruteForce(CsvReader.getCityMatrix()[0].getCityName());
+			System.out.println("done Brute Force");
 			return bf.getResult().toString();
 		}else if(algorithm.equals("ni")) {
 			NearestInsertion ni = new NearestInsertion(CsvReader.getCityMatrix()[0].getCityName());
