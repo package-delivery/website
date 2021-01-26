@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-
     <script type="text/javascript"
             defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEJr7mKXwJy4rHM13HkYAYlPuuqgGBQUU"></script>
     <script src="./node_modules/location-picker/dist/location-picker.min.js"></script>
@@ -35,175 +34,83 @@
 
 </header>
 
-
-
 <body>
     <br>
     <div id="map"></div>
 
     <div style="display: inline; float: left;">
-        <p class="lead" for="algorithmchooser" style="margin-left: 50px; width: 10%; min-width: 200px; margin-top: 20px; margin-bottom: 10px;">Choose a algorithm:</p>
+        <p class="lead" for="algorithmchooser" style="margin-left: 50px; width: 10%; min-width: 200px; margin-top: 10px; margin-bottom: 11px;">Choose a algorithm:</p>
 
         <div id="algorithmchooser" class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-left: 50px;">
             <input type="radio" value="nn" class="btn-check" name="btnradio" id="btnAlgo1" autocomplete="off" checked>
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo1">Nearest Neighbor</label>
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo1" style="height: 50px;">Nearest Neighbor</label>
 
             <input type="radio" value="ni" class="btn-check" name="btnradio" id="btnAlgo2" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo2">Nearest Insertion</label>
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo2" style="height: 50px;">Nearest Insertion</label>
 
             <input type="radio" value="ch" class="btn-check" name="btnradio" id="btnAlgo3" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo3">Convex Hull</label>
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo3" style="height: 50px;">Convex Hull</label>
 
             <input type="radio" value="bf" class="btn-check" name="btnradio" id="btnAlgo4" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo4">Brute Force</label>
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo4" style="height: 50px;">Brute Force</label>
 
             <input type="radio" value="sa" class="btn-check" name="btnradio" id="btnAlgo5" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo5">Simulated Annealing</label>
+            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo5" style="height: 50px;">Simulated Annealing</label>
 
         </div>
     </div>
+
+
 
     <div class="buttons" style="float: right; margin-right: 100px; margin-top: 50px;">
 
         <span id="onClickPositionView"></span>
         <div>
-            <button id="confirmPoints" class="btn btn-outline-success btn-lg" style="margin-right: 50px; width: 170px;">Confirm Points</button>
-            <button id="clearLines" class="btn btn-outline-danger btn-lg" style="width: 170px;">Clear Lines</button>
+            <button id="confirmPoints" class="btn btn-outline-success btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Confirm Points</button>
+            <button id="clearLines" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear Lines</button>
         </div>
         <br>
         <div style="margin-top: 20px">
-            <button id="clearOnePoint" class="btn btn-outline-dark btn-lg" style="margin-right: 50px; width: 170px;">Clear Last Point</button>
-            <button id="clearAllPoints" class="btn btn-outline-danger btn-lg" style="width: 170px;">Clear All Points</button>
+            <button id="clearOnePoint" class="btn btn-outline-dark btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Clear Last Point</button>
+            <button id="clearAllPoints" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear All Points</button>
         </div>
     </div>
-
-
-    <!---
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-            Default checkbox
-        </label>
-    </div>
-    -->
 
     </br>
 
-    <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 200px; margin-bottom: 300px; margin-left: 50px; max-width: 800px; text-align: center;">
 
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Nearest Neighbor
-                </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    Vom fixen Startknoten aus wird der am wenigsten entfernte Knoten besucht. Von dem
-                    zweiten Knoten wird dann wieder der am geringsten entfernte Knoten besucht, solange bis
-                    alle Knoten besucht worden sind. Abschließend wird noch der Startpunkt besucht. So kommt
-                    es zu einem Hamiltonkreis. Dieses Verfahren wählt so meistens eine kurze Tour, jedoch fast
-                    nie die Optimale. Ein weiterer Vorteil ist, dass dieser Algorithmus sehr schnell ist.
+    <div style="max-width: 600px; text-align: center; float: left; margin-left: 20px; margin-bottom: 30px; margin-top: 50px">
+        <div class="accordion accordion-flush border border-dark rounded" id="accordionFlushExample">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button id="descriptionButton" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style=" width: 600px; height: 50px;">
+                        Nearest Neighbor
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div id="descriptionText" class="accordion-body">
+                        Vom fixen Startknoten aus wird der am wenigsten entfernte Knoten besucht. Von dem
+                        zweiten Knoten wird dann wieder der am geringsten entfernte Knoten besucht, solange bis
+                        alle Knoten besucht worden sind. Abschließend wird noch der Startpunkt besucht. So kommt
+                        es zu einem Hamiltonkreis. Dieses Verfahren wählt so meistens eine kurze Tour, jedoch fast
+                        nie die Optimale. Ein weiterer Vorteil ist, dass dieser Algorithmus sehr schnell ist.
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <br>
+
+    <div class="form-check form-switch " style="clear:both; margin-left: 50px; margin-top: 10px;">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Trace Path</label>
+    </div>
 
 
 
-
-
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    Nearest Insertion
-                </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    Ziel ist es wieder eine relativ kurze Rundreise über alle Knoten zu erhalten. Der Algorithmus
-                    wählt bei jedem Schritt einen Knoten aus, welcher die geringste Entfernung zu einem
-                    Knoten hat, welcher auf der bereits vorhandenen Teilroute vorhanden ist. Dieser Punkt wird
-                    dann in die vorhandene Teilroute so eingebaut, dass diese Teilroute sich am geringsten
-                    verlängert. Die entstandene Route kann nicht länger sein als die doppelte Strecke der
-                    optimalen Route.
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    Convex Hull
-                </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    Dieser Algorithmus eignet sich gut, um eine kurze Rundreise zu bestimmen, wenn man die
-                    Koordinaten der Punkte gegeben hat. Mit einer Adjazenzmatrix ist es eher schwieriger,
-                    deshalb eignet sich dieser Algorithmus am besten, um auf unserer Webseite ausgeführt zu
-                    werden.
-                    Bei diesem Algorithmus werden zuerst die äußersten Punkte miteinander verbunden,
-                    sodass man einen Kreis um die restlichen inneren Punkte erhält. Danach wird der Kreis “zusammengedrückt”, die Punkte, die weiter außen liegen, werden
-                    zum Äußeren Kreis hinzugefügt, bis am Ende alle Punkte dem Kreis hinzugefügt wurden.
-                    Ein großer Vorteil dieses Algorithmus ist, dass es durch das Vorgehen von außen nach
-                    innen zu einem Art Kreis kommt, die Route wird sich nie überkreuzen. Da es bewiesen ist,
-                    dass sich die optimale Route niemals kreuzt und auch Convex Hull sich niemals kreuzt,
-                    schafft es dieser heuristische Algorithmus sehr nahe an die optimale Lösung zu kommen.
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingFour">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                Brute Force
-            </button>
-          </h2>
-          <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-                Probiert alle möglichen Routen aus. <br>So wird die bestmögliche Route gefunden. Es ist darauf
-                zu achten, dass man nicht alle Routen doppelt ausprobiert. <br>Bei drei Knoten a,b,c ist z.B. a-
-                >b->c->a dasselbe wie a->c->b->a.
-            </div>
-        </div>
-
-
-
-
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingFive">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                Simulated Annealing
-            </button>
-          </h2>
-          <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-                Man startet zuerst mit der Nearest Neighbor Route, dann beginnt man zufällig zwei Punkte
-                in der Route zu tauschen. Anschließend schaut man, ob sich die Route dadurch verbessert hat oder
-                nicht.  <br>Man würde zu einem Punkt kommen, an dem sich die Route nicht mehr verbessern
-                kann, aber noch nicht die beste Route ist. Um das so lange wie möglich zu verhindern, wird
-                die Route auch kurzzeitig verschlechtert, um dann wieder ein besseres Ergebnis zu
-                erreichen.  <br>Es kann jedoch vorkommen, dass einige während der Laufzeit berechneten
-                Routen kürzer sind als die final ausgegebene Route, deshalb wird das beste Ergebnis immer
-                gespeichert.  <br>Ob die neue Route akzeptiert wird oder nicht, wird wie folgt berechnet: <br>
-                Wenn die neue Route kürzer als die alte Route ist, dann wird sie klarerweise akzeptiert,
-                ansonsten verwendet man folgende Formel: <br>
-                Math.exp(-delta-sigma) > Math.random(). <br>
-                Dabei ist -delta die negative Differenz der Länge der neuen Route und der Länge der alten
-                Route und sigma ein Toleranzwert, der sich bei jedem Durchgang verringert.
-            </div>
-        </div>
-      </div>
+    <div style="margin-bottom:300px"></div>
 
 </body>
 </html>

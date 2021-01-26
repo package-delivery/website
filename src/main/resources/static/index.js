@@ -3,6 +3,69 @@ var onClickPositionView = document.getElementById('onClickPositionView');
 var confirmPoints = document.getElementById('confirmPoints');
 var clearPoints = document.getElementById('clearPoints');
 
+document.getElementById("btnAlgo1").addEventListener("click", () => {
+    document.getElementById("descriptionButton").innerHTML = "Nearest Neighbor"
+    document.getElementById("descriptionText").innerHTML = `
+    Vom fixen Startknoten aus wird der am wenigsten entfernte Knoten besucht. Von dem
+    zweiten Knoten wird dann wieder der am geringsten entfernte Knoten besucht, solange bis
+    alle Knoten besucht worden sind. Abschließend wird noch der Startpunkt besucht. So kommt
+    es zu einem Hamiltonkreis. Dieses Verfahren wählt so meistens eine kurze Tour, jedoch fast
+    nie die Optimale. Ein weiterer Vorteil ist, dass dieser Algorithmus sehr schnell ist.`
+})
+
+document.getElementById("btnAlgo2").addEventListener("click", () => {
+    document.getElementById("descriptionButton").innerHTML = "Nearest Insertion"
+    document.getElementById("descriptionText").innerHTML = `
+    Ziel ist es wieder eine relativ kurze Rundreise über alle Knoten zu erhalten. Der Algorithmus
+    wählt bei jedem Schritt einen Knoten aus, welcher die geringste Entfernung zu einem
+    Knoten hat, welcher auf der bereits vorhandenen Teilroute vorhanden ist. Dieser Punkt wird
+    dann in die vorhandene Teilroute so eingebaut, dass diese Teilroute sich am geringsten
+    verlängert. Die entstandene Route kann nicht länger sein als die doppelte Strecke der
+    optimalen Route.`
+})
+
+document.getElementById("btnAlgo3").addEventListener("click", () => {
+    document.getElementById("descriptionButton").innerHTML = "Convex Hull"
+    document.getElementById("descriptionText").innerHTML = `
+    Dieser Algorithmus eignet sich gut, um eine kurze Rundreise zu bestimmen, wenn man die
+    Koordinaten der Punkte gegeben hat. Mit einer Adjazenzmatrix ist es eher schwieriger,
+    deshalb eignet sich dieser Algorithmus am besten, um auf unserer Webseite ausgeführt zu
+    werden.
+    Bei diesem Algorithmus werden zuerst die äußersten Punkte miteinander verbunden,
+    sodass man einen Kreis um die restlichen inneren Punkte erhält. Danach wird der Kreis “zusammengedrückt”, die Punkte, die weiter außen liegen, werden
+    zum Äußeren Kreis hinzugefügt, bis am Ende alle Punkte dem Kreis hinzugefügt wurden.
+    Ein großer Vorteil dieses Algorithmus ist, dass es durch das Vorgehen von außen nach
+    innen zu einem Art Kreis kommt, die Route wird sich nie überkreuzen. Da es bewiesen ist,
+    dass sich die optimale Route niemals kreuzt und auch Convex Hull sich niemals kreuzt,
+    schafft es dieser heuristische Algorithmus sehr nahe an die optimale Lösung zu kommen.`
+})
+
+document.getElementById("btnAlgo4").addEventListener("click", () => {
+    document.getElementById("descriptionButton").innerHTML = "Brute Force"
+    document.getElementById("descriptionText").innerHTML = `
+    Probiert alle möglichen Routen aus. <br>So wird die bestmögliche Route gefunden. Es ist darauf
+    zu achten, dass man nicht alle Routen doppelt ausprobiert. <br>Bei drei Knoten a,b,c ist z.B. a-
+    >b->c->a dasselbe wie a->c->b->a.`
+})
+
+document.getElementById("btnAlgo5").addEventListener("click", () => {
+    document.getElementById("descriptionButton").innerHTML = "Simulated Annealing"
+    document.getElementById("descriptionText").innerHTML = `
+    Man startet zuerst mit der Nearest Neighbor Route, dann beginnt man zufällig zwei Punkte
+    in der Route zu tauschen. Anschließend schaut man, ob sich die Route dadurch verbessert hat oder
+    nicht.  <br>Man würde zu einem Punkt kommen, an dem sich die Route nicht mehr verbessern
+    kann, aber noch nicht die beste Route ist. Um das so lange wie möglich zu verhindern, wird
+    die Route auch kurzzeitig verschlechtert, um dann wieder ein besseres Ergebnis zu
+    erreichen.  <br>Es kann jedoch vorkommen, dass einige während der Laufzeit berechneten
+    Routen kürzer sind als die final ausgegebene Route, deshalb wird das beste Ergebnis immer
+    gespeichert.  <br>Ob die neue Route akzeptiert wird oder nicht, wird wie folgt berechnet: <br>
+    Wenn die neue Route kürzer als die alte Route ist, dann wird sie klarerweise akzeptiert,
+    ansonsten verwendet man folgende Formel: <br>
+    Math.exp(-delta-sigma) > Math.random(). <br>
+    Dabei ist -delta die negative Differenz der Länge der neuen Route und der Länge der alten
+    Route und sigma ein Toleranzwert, der sich bei jedem Durchgang verringert.`
+})
+
 // Initialize MapBox map
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2FmZmFyZWxsIiwiYSI6ImNra2Jlbnh0bTA0OW0ydnFybmhxbjlteWcifQ.pue0gPKhUWGDHYIhRXECzQ';
 var map = new mapboxgl.Map({
@@ -60,7 +123,7 @@ confirmPoints.onclick = function() {
         matrix[0][i] = alphabet[i-1];
     }
     // Fill distances
-    
+
     for(let i = 1; i < markers.length +1; i++) {
         for(let a = 1; a < markers.length+1; a++) {
             const mk1 = markers[a-1].getLngLat();
@@ -70,7 +133,7 @@ confirmPoints.onclick = function() {
         }
     }
 
-   
+
 
 
     // Add newline at the beginning of every line
@@ -143,7 +206,7 @@ async function printLines(cityArray) {
             }
         });
 
-        // Add layer with source 
+        // Add layer with source
         map.addLayer({
             'id': 'route',
             'type': 'line',
