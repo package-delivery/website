@@ -38,77 +38,81 @@
     <br>
     <div id="map"></div>
 
-    <div style="display: inline; float: left;">
-        <p class="lead" for="algorithmchooser" style="margin-left: 50px; width: 10%; min-width: 200px; margin-top: 10px; margin-bottom: 11px;">Choose a algorithm:</p>
-
-        <div id="algorithmchooser" class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-left: 50px;">
-            <input type="radio" value="nn" class="btn-check" name="btnradio" id="btnAlgo1" autocomplete="off" checked>
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo1" style="height: 50px;">Nearest Neighbor</label>
-
-            <input type="radio" value="ni" class="btn-check" name="btnradio" id="btnAlgo2" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo2" style="height: 50px;">Nearest Insertion</label>
-
-            <input type="radio" value="ch" class="btn-check" name="btnradio" id="btnAlgo3" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo3" style="height: 50px;">Convex Hull</label>
-
-            <input type="radio" value="bf" class="btn-check" name="btnradio" id="btnAlgo4" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo4" style="height: 50px;">Brute Force</label>
-
-            <input type="radio" value="sa" class="btn-check" name="btnradio" id="btnAlgo5" autocomplete="off">
-            <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo5" style="height: 50px;">Simulated Annealing</label>
-
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="form-check form-switch " style="margin-left: 50px; margin-top: 10px;">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Trace Path</label>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-auto" style="padding-right: 10px;">
+                <p class="lead" for="algorithmchooser" style="margin-left: 50px; margin-top: 10px; margin-bottom: 10px;">Choose an algorithm:</p>
 
+                <div id="algorithmchooser" class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-left: 50px;">
 
-    <div class="buttons" style="float: right; margin-right: 100px; margin-top: 50px;">
+                    <input type="radio" value="nn" class="btn-check" name="btnradio" id="btnAlgo1" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo1" style="height: 50px;">Nearest Neighbor</label>
 
-        <span id="onClickPositionView"></span>
-        <div>
-            <button id="confirmPoints" class="btn btn-outline-success btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Confirm Points</button>
-            <button id="clearLines" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear Lines</button>
-        </div>
-        <br>
-        <div style="margin-top: 20px">
-            <button id="clearOnePoint" class="btn btn-outline-dark btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Clear Last Point</button>
-            <button id="clearAllPoints" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear All Points</button>
-        </div>
-    </div>
+                    <input type="radio" value="ni" class="btn-check" name="btnradio" id="btnAlgo2" autocomplete="off">
+                    <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo2" style="height: 50px;">Nearest Insertion</label>
 
-    </br>
+                    <input type="radio" value="ch" class="btn-check" name="btnradio" id="btnAlgo3" autocomplete="off">
+                    <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo3" style="height: 50px;">Convex Hull</label>
 
+                    <input type="radio" value="bf" class="btn-check" name="btnradio" id="btnAlgo4" autocomplete="off">
+                    <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo4" style="height: 50px;">Brute Force</label>
 
-    <div style="max-width: 600px; text-align: center; float: left; margin-left: 20px; margin-bottom: 30px; margin-top: 50px">
-        <div class="accordion accordion-flush border border-dark rounded" id="accordionFlushExample">
+                    <input type="radio" value="sa" class="btn-check" name="btnradio" id="btnAlgo5" autocomplete="off">
+                    <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo5" style="height: 50px;">Simulated Annealing</label>
+                </div>
+            </div>
+            <div class="col-md-auto" style="padding-left: 10px;">
+                <div style=" text-align: center; float: left; margin-bottom: 30px; margin-top: 50px">
+                    <div class="accordion accordion-flush border border-dark rounded" id="accordionFlushExample">
 
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button id="descriptionButton" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style=" width: 600px; height: 50px;">
-                        Nearest Neighbor
-                    </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div id="descriptionText" class="accordion-body">
-                        Vom fixen Startknoten aus wird der am wenigsten entfernte Knoten besucht. Von dem
-                        zweiten Knoten wird dann wieder der am geringsten entfernte Knoten besucht, solange bis
-                        alle Knoten besucht worden sind. Abschließend wird noch der Startpunkt besucht. So kommt
-                        es zu einem Hamiltonkreis. Dieses Verfahren wählt so meistens eine kurze Tour, jedoch fast
-                        nie die Optimale. Ein weiterer Vorteil ist, dass dieser Algorithmus sehr schnell ist.
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button id="descriptionButton" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style=" width: 600px; height: 50px;">
+                                    Nearest Neighbor
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div id="descriptionText" class="accordion-body">
+                                    Vom fixen Startknoten aus wird der am wenigsten entfernte Knoten besucht. Von dem
+                                    zweiten Knoten wird dann wieder der am geringsten entfernte Knoten besucht, solange bis
+                                    alle Knoten besucht worden sind. Abschließend wird noch der Startpunkt besucht. So kommt
+                                    es zu einem Hamiltonkreis. Dieses Verfahren wählt so meistens eine kurze Tour, jedoch fast
+                                    nie die Optimale. Ein weiterer Vorteil ist, dass dieser Algorithmus sehr schnell ist.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-auto" style="padding-left: max(0, min(100, 150));">
+                <div class="buttons" style="margin-top: 50px;">
+
+                    <span id="onClickPositionView"></span>
+                    <div>
+                        <button id="confirmPoints" class="btn btn-outline-success btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Confirm Points</button>
+                        <button id="clearLines" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear Lines</button>
+                    </div>
+                    <br>
+                    <div style="margin-top: 20px">
+                        <button id="clearOnePoint" class="btn btn-outline-dark btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Clear Last Point</button>
+                        <button id="clearAllPoints" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear All Points</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <br>
-
-    <div class="form-check form-switch " style="clear:both; margin-left: 50px; margin-top: 10px;">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Trace Path</label>
-    </div>
-
-
 
     <div style="margin-bottom:300px"></div>
 
