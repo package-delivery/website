@@ -1,7 +1,9 @@
 // Get element references
 var onClickPositionView = document.getElementById('onClickPositionView');
 var confirmPoints = document.getElementById('confirmPoints');
-var clearPoints = document.getElementById('clearPoints');
+var clearLines = document.getElementById('clearLines');
+var clearAllPoints = document.getElementById('clearAllPoints');
+var clearOnePoint = document.getElementById('clearOnePoint');
 
 document.getElementById("btnAlgo1").addEventListener("click", () => {
     document.getElementById("descriptionButton").innerHTML = "Nearest Neighbor"
@@ -11,7 +13,7 @@ document.getElementById("btnAlgo1").addEventListener("click", () => {
     alle Knoten besucht worden sind. Abschließend wird noch der Startpunkt besucht. So kommt
     es zu einem Hamiltonkreis. Dieses Verfahren wählt so meistens eine kurze Tour, jedoch fast
     nie die Optimale. Ein weiterer Vorteil ist, dass dieser Algorithmus sehr schnell ist.`
-})
+});
 
 document.getElementById("btnAlgo2").addEventListener("click", () => {
     document.getElementById("descriptionButton").innerHTML = "Nearest Insertion"
@@ -22,7 +24,7 @@ document.getElementById("btnAlgo2").addEventListener("click", () => {
     dann in die vorhandene Teilroute so eingebaut, dass diese Teilroute sich am geringsten
     verlängert. Die entstandene Route kann nicht länger sein als die doppelte Strecke der
     optimalen Route.`
-})
+});
 
 document.getElementById("btnAlgo3").addEventListener("click", () => {
     document.getElementById("descriptionButton").innerHTML = "Convex Hull"
@@ -38,7 +40,7 @@ document.getElementById("btnAlgo3").addEventListener("click", () => {
     innen zu einem Art Kreis kommt, die Route wird sich nie überkreuzen. Da es bewiesen ist,
     dass sich die optimale Route niemals kreuzt und auch Convex Hull sich niemals kreuzt,
     schafft es dieser heuristische Algorithmus sehr nahe an die optimale Lösung zu kommen.`
-})
+});
 
 document.getElementById("btnAlgo4").addEventListener("click", () => {
     document.getElementById("descriptionButton").innerHTML = "Brute Force"
@@ -46,7 +48,7 @@ document.getElementById("btnAlgo4").addEventListener("click", () => {
     Probiert alle möglichen Routen aus. <br>So wird die bestmögliche Route gefunden. Es ist darauf
     zu achten, dass man nicht alle Routen doppelt ausprobiert. <br>Bei drei Knoten a,b,c ist z.B. a-
     >b->c->a dasselbe wie a->c->b->a.`
-})
+});
 
 document.getElementById("btnAlgo5").addEventListener("click", () => {
     document.getElementById("descriptionButton").innerHTML = "Simulated Annealing"
@@ -64,7 +66,7 @@ document.getElementById("btnAlgo5").addEventListener("click", () => {
     Math.exp(-delta-sigma) > Math.random(). <br>
     Dabei ist -delta die negative Differenz der Länge der neuen Route und der Länge der alten
     Route und sigma ein Toleranzwert, der sich bei jedem Durchgang verringert.`
-})
+});
 
 // Initialize MapBox map
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2FmZmFyZWxsIiwiYSI6ImNra2Jlbnh0bTA0OW0ydnFybmhxbjlteWcifQ.pue0gPKhUWGDHYIhRXECzQ';
@@ -78,7 +80,6 @@ let markers = [];
 let points = [];
 let labels = [];
 let label_counter = 0;
-const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 // Listener for click
 map.on('click', function (e) {
@@ -96,7 +97,8 @@ map.on('click', function (e) {
         .addTo(map);
     let pointWorkAround = [];
     markers.push(marker);
-    labels.push(alphabet[label_counter]);
+    // TODO: wrong
+    labels.push(label_counter.toString());
     label_counter++;
     pointWorkAround.push(e.lngLat.lng, e.lngLat.lat);
     points.push(pointWorkAround)
@@ -105,13 +107,29 @@ map.on('click', function (e) {
 
 
 
-clearPoints.onclick = function () {
+clearLines.addEventListener("click", () => {
     map.removeLayer("route");
     map.removeSource("route");
-}
+});
+
+clearAllPoints.addEventListener("click", () => {
+    for(let i = 0; i < markers.length; i++) {
+        markers[i].remove();
+    }
+    labels = [];
+    points = [];
+    markers = [];
+});
+
+clearOnePoint.addEventListener("click", () => {
+    markers[markers.length-1].remove();
+    markers.pop();
+    labels.pop();
+    points.pop();
+});
 
 
-confirmPoints.onclick = function() {
+confirmPoints.addEventListener("click", () => {
     // Create two-dimensional array
     var matrix = new Array(markers.length+1);
     for(let i = 0; i < markers.length+1; i++) {
@@ -119,8 +137,8 @@ confirmPoints.onclick = function() {
     }
     // Fill city names
     for(let i = 1; i < markers.length+1; i++) {
-        matrix[i][0] = alphabet[i-1];
-        matrix[0][i] = alphabet[i-1];
+        matrix[i][0] = labels[i-1];
+        matrix[0][i] = labels[i-1];
     }
     // Fill distances
 
@@ -143,7 +161,7 @@ confirmPoints.onclick = function() {
 
     // Send request to server with matrix
     requestServer(matrix);
-};
+});
 
 function getSelectedAlgorithm() {
     let e = document.getElementById("algorithmchooser");
@@ -186,7 +204,6 @@ function requestServer(matrix) {
 
 async function printLines(cityArray) {
     // Draw lines
-    let delay = 500;
     let all_points = [];
 
     let city_array_counter = 0;
@@ -248,8 +265,3 @@ function haversine_distance(mk1, mk2) {
     var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
     return d;
 }
-
-
-// https://developers.google.com/maps/documentation/javascript/markers
-// https://cloud.google.com/blog/products/maps-platform/how-calculate-distances-map-maps-javascript-api
-// https://developers.google.com/maps/documentation/maps-static/get-api-key
