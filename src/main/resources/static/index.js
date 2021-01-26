@@ -85,9 +85,9 @@ let label_counter = 0;
 map.on('click', function (e) {
     let color;
     if (markers.length === 0) {
-        color = "#FF8C00";
+        color = "#E6646E";
     } else {
-        color = "#3FB1CE";
+        color = "#FFC350";
     }
 
     let marker = new mapboxgl.Marker({
