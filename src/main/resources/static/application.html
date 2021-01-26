@@ -7,14 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-    <script type="text/javascript"
-            defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEJr7mKXwJy4rHM13HkYAYlPuuqgGBQUU"></script>
-    <script src="./node_modules/location-picker/dist/location-picker.min.js"></script>
     <script defer src="./index.js"></script>
     <style type="text/css">
         #map {
             width: 100%;
-            height: 900px;
+            height: 700px;
         }
     </style>
 
@@ -35,14 +32,13 @@
 </header>
 
 <body>
-    <br>
     <div id="map"></div>
 
     <div class="container-fluid">
         <div class="row">
           <div class="col">
             <div class="form-check form-switch " style="margin-left: 50px; margin-top: 10px;">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <input class="form-check-input" type="checkbox" id="visualizeToggle">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Trace Path</label>
             </div>
           </div>
@@ -101,12 +97,12 @@
 
                     <span id="onClickPositionView"></span>
                     <div>
-                        <button id="confirmPoints" class="btn btn-outline-success btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Confirm Points</button>
+                        <button id="confirmPoints" class="btn btn-outline-success btn-lg" style="margin-right: 20px; width: 170px; height: 50px;">Confirm Points</button>
                         <button id="clearLines" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear Lines</button>
                     </div>
                     <br>
                     <div style="margin-top: 20px">
-                        <button id="clearOnePoint" class="btn btn-outline-dark btn-lg" style="margin-right: 50px; width: 170px; height: 50px;">Clear Last Point</button>
+                        <button id="clearOnePoint" class="btn btn-outline-dark btn-lg" style="margin-right: 20px; width: 170px; height: 50px;">Clear Last Point</button>
                         <button id="clearAllPoints" class="btn btn-outline-danger btn-lg" style="width: 170px; height: 50px;">Clear All Points</button>
                     </div>
                 </div>
