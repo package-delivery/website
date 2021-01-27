@@ -34,7 +34,7 @@
 <body>
     <div id="map"></div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="justify-content: flex-start;">
         <div class="row">
             <div class="col-4" style="width: 750px;">
                 <div class="form-check form-switch " style="margin-left: 50px; margin-top: 10px;">
@@ -42,12 +42,12 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault">Trace Path</label>
                 </div>
             </div>
-            <div class="col-3" style="padding-left: 15px;">
+            <div class="col-3" style="padding-left: 15px; width: 624px;">
                 <div class="form-check form-switch" style="padding-left: 0px">
                     <span id="onClickPositionView" class="lead">Length of the route:</span>
                 </div>
             </div>
-            <div class="col">
+            <div class="col" style="min-width: 350px;">
               <label for="simulationSpeed" class="form-label" >Simulation speed</label>
               <br>
               <input type="range" class="form-range" id="simulationSpeed" style="max-width: 350px;">
@@ -75,7 +75,7 @@
                     <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo4" style="height: 50px; display:flex; justify-content:center; align-items:center;">Brute Force</label>
 
                     <input type="radio" value="sa" class="btn-check" name="btnradio" id="btnAlgo5" autocomplete="off">
-                    <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo5" style="height: 50px; display:flex; justify-content:center ;align-items:center;">Simulated Annealing</label>
+                    <label class="btn btn-outline-primary btn-outline-dark" for="btnAlgo5" style="height: 50px; display:flex; justify-content:center; align-items:center;">Simulated Annealing</label>
                 </div>
             </div>
             <div class="col-md-auto" style="padding-left: 10px;">
