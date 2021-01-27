@@ -4,6 +4,7 @@ var confirmPoints = document.getElementById('confirmPoints');
 var clearLines = document.getElementById('clearLines');
 var clearAllPoints = document.getElementById('clearAllPoints');
 var clearOnePoint = document.getElementById('clearOnePoint');
+var simulationSpeed = document.getElementById('simulationSpeed');
 
 document.getElementById("btnAlgo1").addEventListener("click", () => {
     document.getElementById("descriptionButton").innerHTML = "Nearest Neighbor"
@@ -274,8 +275,8 @@ async function printLines(cityArray) {
             });
         }
 
-        // Wait 500 ms
-        await sleep(500);
+        // Check slider for value and then wait that amount 
+        await sleep(simulationSpeed.value * 10);
     }
 }
 
