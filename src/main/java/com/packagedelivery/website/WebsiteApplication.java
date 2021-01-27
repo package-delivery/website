@@ -18,8 +18,7 @@ public class WebsiteApplication {
 	public String postMatrix(@RequestBody String matrix) {
 		String algorithm = matrix.substring(0, 2);
 		matrix = matrix.substring(2);
-
-		if(CsvReader.readString(matrix) == false){
+		if(!algorithm.equals("ch") && CsvReader.readString(matrix) == false){
 			System.out.println("Error parsing csv file");
 		}
 		if(algorithm.equals("nn")){
@@ -35,7 +34,11 @@ public class WebsiteApplication {
 			return ni.getResult().toString();
 		}else if(algorithm.equals("sa")) {
 			SimulatedAnnealing sa = new SimulatedAnnealing(CsvReader.getCityMatrix()[0].getCityName());
-		   	return sa.getResult().toString();
+			return sa.getResult().toString();
+		}else if(algorithm.equals("ch")){
+			System.out.println(matrix);
+		    ConvexHull ch = new ConvexHull(matrix);
+		    return ch.getResult().toString();
 		}else{
 			return "";
 		}

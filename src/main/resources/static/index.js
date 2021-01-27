@@ -97,7 +97,6 @@ map.on('click', function (e) {
         .addTo(map);
     let pointWorkAround = [];
     markers.push(marker);
-    // TODO: wrong
     labels.push(label_counter.toString());
     label_counter++;
     pointWorkAround.push(e.lngLat.lng, e.lngLat.lat);
@@ -152,8 +151,6 @@ confirmPoints.addEventListener("click", () => {
     }
 
 
-
-
     // Add newline at the beginning of every line
     for(let i = 1; i < matrix.length; i++) {
         matrix[i][0] = '\n' + matrix[i][0];
@@ -163,6 +160,7 @@ confirmPoints.addEventListener("click", () => {
     requestServer(matrix);
 });
 
+// Gets selected algorithm from bootstrap radio button
 function getSelectedAlgorithm() {
     let e = document.getElementById("algorithmchooser");
     let array = e.children;
@@ -173,8 +171,13 @@ function getSelectedAlgorithm() {
     }
 }
 
+// Sends POST request to server with adjazenzmatrix
 function requestServer(matrix) {
-    matrix = getSelectedAlgorithm() + matrix;
+    if(getSelectedAlgorithm() === 'ch'){
+        matrix = getSelectedAlgorithm() + JSON.stringify(points);
+    }else{
+        matrix = getSelectedAlgorithm() + matrix;
+    }
     console.log(matrix);
     const url = '/matrix';
     fetch(url, {
@@ -182,74 +185,107 @@ function requestServer(matrix) {
         body: matrix,
     })  .then(response => response.text())
         .then(response => {
+            // Splits toString() of Cities object and get data
             console.log(response);
+            let cityArray;
             let lengthString = response;
-            response = response.slice(response.indexOf("sortedCities=[") + 14);
-            let cityArray = response.split("City{cityName=");
-            for(let i = 0; i < cityArray.length; i++) {
-                if(cityArray[i].length === 0) {
-                    cityArray.shift();
-                    i--;
-                }else {
-                    cityArray[i] = cityArray[i].slice(1, cityArray[i].indexOf("'", 1));
+            if(getSelectedAlgorithm() === 'ch'){
+                // Special pasing for Convex hull because it returns coordinates
+                response = response.slice(response.indexOf("sortedCities=[") + 14);
+                cityArray = response.split("City{cityName=");
+                for(let i = 0; i < cityArray.length; i++){
+                    cityArray[i] = cityArray[i].slice(0, cityArray[i].indexOf(',', cityArray[i].indexOf(',', 0) + 2))
+                    cityArray[i] = cityArray[i].slice(1, cityArray[i].length-1);
+                }
+                cityArray.shift();
+            }else{
+                // Parse all other algorithm results and get id
+                response = response.slice(response.indexOf("sortedCities=[") + 14);
+                cityArray = response.split("City{cityName=");
+                for(let i = 0; i < cityArray.length; i++) {
+                    if(cityArray[i].length === 0) {
+                        cityArray.shift();
+                        i--;
+                    }else {
+                        cityArray[i] = cityArray[i].slice(1, cityArray[i].indexOf("'", 1));
+                    }
                 }
             }
-
+            // Get distance from result
             lengthString = lengthString.slice(lengthString.indexOf("Cities{distance=") + 16, lengthString.indexOf(","));
             var lengthFloat = parseFloat(lengthString).toFixed(2)
             onClickPositionView.innerHTML = "Length of the route: " + lengthFloat + " km";
+            // Print lines on map
             printLines(cityArray);
     });
 }
 
+// Prints Lines between markers on map
 async function printLines(cityArray) {
-    // Draw lines
     let all_points = [];
 
     let city_array_counter = 0;
     for (let i = 0; i < cityArray.length; i++) {
-        all_points.push(points[labels.indexOf(cityArray[city_array_counter])])
+        if(getSelectedAlgorithm() === 'ch'){
+            console.log(cityArray);
+            console.log(cityArray[city_array_counter]);
+            all_points.push(JSON.parse(cityArray[city_array_counter]));
+        }else{
+            all_points.push(points[labels.indexOf(cityArray[city_array_counter])])
+        }
+        console.log(all_points);
         city_array_counter++;
-        // Add source with coordinates
-        map.addSource('route', {
-            'type': 'geojson',
-            'data': {
+        if(i === 0) {
+            // Add source with coordinates
+            map.addSource('route', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'properties': {},
+                    'geometry': {
+                        'type': 'LineString',
+                        'coordinates': all_points
+                    }
+                }
+            });
+            // Add new map layer for the source
+            map.addLayer({
+                'id': 'route',
+                'type': 'line',
+                'source': 'route',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 4
+                }
+            });
+        }else {
+            // Update Source with new coordinates
+            map.getSource('route').setData({
                 'type': 'Feature',
                 'properties': {},
                 'geometry': {
                     'type': 'LineString',
                     'coordinates': all_points
                 }
-            }
-        });
-
-        // Add layer with source
-        map.addLayer({
-            'id': 'route',
-            'type': 'line',
-            'source': 'route',
-            'layout': {
-                'line-join': 'round',
-                'line-cap': 'round'
-            },
-            'paint': {
-                'line-color': '#888',
-                'line-width': 4
-            }
-        });;
-        await sleep(500);
-        if(i != cityArray.length-1){
-            map.removeLayer('route');
-            map.removeSource('route');
+            });
         }
+
+        // Wait 500 ms
+        await sleep(500);
     }
 }
 
 function sleep(ms) {
+    // Promise that waits special amount of times
     return new Promise(resolve =>  setTimeout(resolve, ms));
 }
 
 
+// haversine distance calculates distance between coordinates with earth rounding included
 function haversine_distance(mk1, mk2) {
     // Radius of the Earth in miles
     var R = 3958.8;
