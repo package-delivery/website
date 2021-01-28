@@ -44,8 +44,9 @@ document.getElementById("btnAlgo3").addEventListener("click", () => {
 });
 
 document.getElementById("btnAlgo4").addEventListener("click", () => {
-    document.getElementById("descriptionButton").innerHTML = "Brute Force"
+    document.getElementById("descriptionButton").innerHTML = "Brute Force WICHTIG!"
     document.getElementById("descriptionText").innerHTML = `
+    Bei mehr als 12 Punkten bricht die Request auf Serverside ab!<br>
     Probiert alle möglichen Routen aus. <br>So wird die bestmögliche Route gefunden. Es ist darauf
     zu achten, dass man nicht alle Routen doppelt ausprobiert. <br>Bei drei Knoten a,b,c ist z.B. a-
     >b->c->a dasselbe wie a->c->b->a.`
