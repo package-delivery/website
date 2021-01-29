@@ -103,7 +103,7 @@ map.on('click', function (e) {
     label_counter++;
     pointWorkAround.push(e.lngLat.lng, e.lngLat.lat);
     points.push(pointWorkAround)
-    console.log(points);
+    //console.log(points);
 });
 
 
@@ -132,27 +132,27 @@ clearOnePoint.addEventListener("click", () => {
 
 confirmPoints.addEventListener("click", () => {
     // Create two-dimensional array
-    var matrix = new Array(markers.length+1);
+    let matrix = new Array(markers.length+1);
     for(let i = 0; i < markers.length+1; i++) {
         matrix[i] = new Array(markers.length+1);
     }
+
     // Fill city names
     for(let i = 1; i < markers.length+1; i++) {
         matrix[i][0] = labels[i-1];
         matrix[0][i] = labels[i-1];
     }
-    // Fill distances
 
     for(let i = 1; i < markers.length +1; i++) {
         for(let a = 1; a < markers.length+1; a++) {
             const mk1 = markers[a-1].getLngLat();
             const mk2 = markers[i-1].getLngLat();
             // Calculate distance
-            matrix[i][a] = haversine_distance(mk1, mk2) * 1.609;
+            matrix[i][a] = haversine_distance(mk1, mk2);
         }
     }
 
-
+    
     // Add newline at the beginning of every line
     for(let i = 1; i < matrix.length; i++) {
         matrix[i][0] = '\n' + matrix[i][0];
@@ -173,14 +173,24 @@ function getSelectedAlgorithm() {
     }
 }
 
+function stringifyPoints(points) {
+    let string = "[";
+    for (let i = 0; i < points.length; i++) {
+        string += "["+points[i][1]+","+points[i][0]+"],";
+    }
+    return string.slice(0,-1) + "]";
+}
+
 // Sends POST request to server with adjazenzmatrix
 function requestServer(matrix) {
     if(getSelectedAlgorithm() === 'ch'){
-        matrix = getSelectedAlgorithm() + JSON.stringify(points);
+        matrix = getSelectedAlgorithm() + stringifyPoints(points);
     }else{
         matrix = getSelectedAlgorithm() + matrix;
     }
-    console.log(matrix);
+
+    //console.log("FJDKLSFJLKDSJFDSJKFJDSFJLDSJFLKDSJFLKDSJF");
+    //console.log(matrix);
     const url = '/matrix';
     fetch(url, {
         method: 'POST',
@@ -188,7 +198,7 @@ function requestServer(matrix) {
     })  .then(response => response.text())
         .then(response => {
             // Splits toString() of Cities object and get data
-            console.log(response);
+            //console.log(response);
             let cityArray;
             let lengthString = response;
             if(getSelectedAlgorithm() === 'ch'){
@@ -214,12 +224,26 @@ function requestServer(matrix) {
                 }
             }
             // Get distance from result
+            //console.log("TESTSTSTSDTST")
+            //console.log(lengthString);
+
             lengthString = lengthString.slice(lengthString.indexOf("Cities{distance=") + 16, lengthString.indexOf(","));
-            var lengthFloat = parseFloat(lengthString).toFixed(2)
+            let lengthFloat = parseFloat(lengthString).toFixed(2)
+
+            //console.log("TESTESTETSTESTESTESTETSTETSTETST")
+            //console.log(lengthFloat);
+
             onClickPositionView.innerHTML = "Length of the route: " + lengthFloat + " km";
             // Print lines on map
             printLines(cityArray);
     });
+}
+
+function stringifyArrayPoints(string) {
+    let array = [];
+    array.push(parseFloat(string.slice(string.indexOf(",")+1, -1)));
+    array.push(parseFloat(string.slice(1, string.indexOf(",")-1)));
+    return array;
 }
 
 // Prints Lines between markers on map
@@ -229,13 +253,14 @@ async function printLines(cityArray) {
     let city_array_counter = 0;
     for (let i = 0; i < cityArray.length; i++) {
         if(getSelectedAlgorithm() === 'ch'){
-            console.log(cityArray);
-            console.log(cityArray[city_array_counter]);
-            all_points.push(JSON.parse(cityArray[city_array_counter]));
+            //console.log(cityArray);
+            //console.log(cityArray[city_array_counter]);
+            //all_points.push(JSON.parse(cityArray[city_array_counter]));
+            all_points.push(stringifyArrayPoints(cityArray[city_array_counter]));
         }else{
             all_points.push(points[labels.indexOf(cityArray[city_array_counter])])
         }
-        console.log(all_points);
+        //console.log(all_points);
         city_array_counter++;
         if(i === 0) {
             // Add source with coordinates
@@ -301,5 +326,13 @@ function haversine_distance(mk1, mk2) {
     var difflon = (mk2.lng-mk1.lng) * (Math.PI/180);
 
     var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
+    d *= 1.609344
+    //console.log("return "+ d + " for points " + mk1 + " and "+ mk2);
+    //console.log(mk1.lat);
+    //console.log(mk1.lng);
+    //console.log()
+    //console.log(mk2.lat);
+    //console.log(mk2.lng);
+    //console.log("new version");
     return d;
 }
