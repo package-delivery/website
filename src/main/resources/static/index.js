@@ -217,12 +217,23 @@ function requestServer(matrix) {
             let lengthString = response;
             let visualizationPoints = response;
             if(getVisualizationToggle() == true){
+                // Get last part of response where the visualization is
                 visualizationPoints = visualizationPoints.slice(visualizationPoints.indexOf("}]}") + 3);
                 visualizationPoints = visualizationPoints.split('\n');
                 for(let i = 0; i < visualizationPoints.length; i++){
+                    // Split points per line
                     visualizationPoints[i] = visualizationPoints[i].split(";");
+                    // Remove last element because it is blank
                     visualizationPoints[i].splice(visualizationPoints[i].length-1, 1);
+                    if(getSelectedAlgorithm() == 'ch'){
+                        for(let a = 0; a < visualizationPoints[i].length; a++){
+                            visualizationPoints[i][a] = visualizationPoints[i][a].replace('|', ',');
+                            // Add brackets for custom stringify method
+                            visualizationPoints[i][a] = '[' + visualizationPoints[i][a] + ']';
+                        }
+                    }
                 }
+                console.log(visualizationPoints);
             }
             if(getSelectedAlgorithm() === 'ch'){
                 // Special parsing for Convex hull because it returns coordinates
@@ -256,18 +267,20 @@ function requestServer(matrix) {
 
             // Print lines on map
             if(getVisualizationToggle() == true){
-                printVisualization(visualizationPoints);
+                printVisualization(visualizationPoints, cityArray);
             }else{
-                printLines(cityArray, false);
+                printLines(cityArray);
             }
     });
 }
 
-async function printVisualization(visualizationPoints){
+async function printVisualization(visualizationPoints, cityArray){
+    console.log("Steps: " + visualizationPoints.length);
     for(let i = 0; i < visualizationPoints.length; i++){
         console.log(i);
-        await printLines(visualizationPoints[i], true)
+        await printLines(visualizationPoints[i])
     }
+    printLines(cityArray);
 
 }
 
@@ -280,7 +293,7 @@ function stringifyArrayPoints(string) {
 
 
 // Prints Lines between markers on map
-async function printLines(cityArray, removeLayer) {
+async function printLines(cityArray) {
     let all_points = [];
 
     let city_array_counter = 0;
