@@ -16,38 +16,58 @@ public class WebsiteApplication {
 
 	@PostMapping("/matrix")
 	public String postMatrix(@RequestBody String matrix) {
+	    String visualization = matrix.substring(0, 1);
+	    matrix = matrix.substring(1);
 		String algorithm = matrix.substring(0, 2);
 		matrix = matrix.substring(2);
 		if(!algorithm.equals("ch") && CsvReader.readString(matrix) == false){
 			System.out.println("Error parsing csv file");
 		}
 		if(algorithm.equals("nn")){
-			NearestNeighbor nn = new NearestNeighbor(CsvReader.getCityMatrix()[0].getCityName());
-			return nn.getResult().toString();
+			// TODO: Add visualization
+			if(visualization.equals("1")){
+				NearestNeighbor nn = new NearestNeighbor(CsvReader.getCityMatrix()[0].getCityName());
+				return nn.getResult().toString();
+			}else{
+				NearestNeighbor nn = new NearestNeighbor(CsvReader.getCityMatrix()[0].getCityName());
+				return nn.getResult().toString();
+			}
 		}else if(algorithm.equals("bf")) {
-			System.out.println("start Brute Force");
-			BruteForce bf = new BruteForce(CsvReader.getCityMatrix()[0].getCityName());
-			System.out.println("done Brute Force");
-			return bf.getResult().toString();
+			// TODO: Add visualization
+			if(visualization.equals("1")){
+				BruteForce bf = new BruteForce(CsvReader.getCityMatrix()[0].getCityName());
+				return bf.getResult().toString();
+			}else{
+				BruteForce bf = new BruteForce(CsvReader.getCityMatrix()[0].getCityName());
+				return bf.getResult().toString();
+			}
 		}else if(algorithm.equals("ni")) {
-			NearestInsertion ni = new NearestInsertion(CsvReader.getCityMatrix()[0].getCityName());
-			return ni.getResult().toString();
+			if(visualization.equals("1")){
+				NearestInsertion ni = new NearestInsertion(CsvReader.getCityMatrix()[0].getCityName(), true);
+				return ni.getResult().toString() + ni.getVisualization();
+			}else{
+				NearestInsertion ni = new NearestInsertion(CsvReader.getCityMatrix()[0].getCityName());
+				return ni.getResult().toString();
+			}
 		}else if(algorithm.equals("sa")) {
-			SimulatedAnnealing sa = new SimulatedAnnealing(CsvReader.getCityMatrix()[0].getCityName());
-			return sa.getResult().toString();
+			if(visualization.equals("1")){
+				SimulatedAnnealing sa = new SimulatedAnnealing(CsvReader.getCityMatrix()[0].getCityName(), true);
+				return sa.getResult().toString() + sa.getVisualization();
+			}else{
+				SimulatedAnnealing sa = new SimulatedAnnealing(CsvReader.getCityMatrix()[0].getCityName());
+				return sa.getResult().toString();
+			}
 		}else if(algorithm.equals("ch")){
-			System.out.println(matrix);
-		    ConvexHull ch = new ConvexHull(matrix);
-		    return ch.getResult().toString();
+			if(visualization.equals("1")){
+				ConvexHull ch = new ConvexHull(matrix, true);
+				return ch.getResult().toString() + ch.getVisualization();
+			}else{
+				ConvexHull ch = new ConvexHull(matrix);
+				return ch.getResult().toString();
+			}
 		}else{
 			return "";
 		}
-	}
-
-	@PostMapping("/coordinates")
-	public String postCoordinates(@RequestBody String coordinates) {
-	    // Call ConvexHull function with parameter coordinates
-		return coordinates;
 	}
 
 	@GetMapping("/test")

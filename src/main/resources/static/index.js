@@ -5,6 +5,7 @@ var clearLines = document.getElementById('clearLines');
 var clearAllPoints = document.getElementById('clearAllPoints');
 var clearOnePoint = document.getElementById('clearOnePoint');
 var simulationSpeed = document.getElementById('simulationSpeed');
+var visualizationToggle = document.getElementById('visualizeToggle');
 
 document.getElementById("btnAlgo1").addEventListener("click", () => {
     document.getElementById("descriptionButton").innerHTML = "Nearest Neighbor"
@@ -103,7 +104,6 @@ map.on('click', function (e) {
     label_counter++;
     pointWorkAround.push(e.lngLat.lng, e.lngLat.lat);
     points.push(pointWorkAround)
-    //console.log(points);
 });
 
 
@@ -131,6 +131,9 @@ clearOnePoint.addEventListener("click", () => {
 
 
 confirmPoints.addEventListener("click", () => {
+    console.log("Visualization is: " + getVisualizationToggle());
+
+
     // Create two-dimensional array
     let matrix = new Array(markers.length+1);
     for(let i = 0; i < markers.length+1; i++) {
@@ -173,6 +176,11 @@ function getSelectedAlgorithm() {
     }
 }
 
+function getVisualizationToggle() {
+    return visualizationToggle.checked;
+}
+
+
 function stringifyPoints(points) {
     let string = "[";
     for (let i = 0; i < points.length; i++) {
@@ -183,14 +191,20 @@ function stringifyPoints(points) {
 
 // Sends POST request to server with adjazenzmatrix
 function requestServer(matrix) {
+    // Add selected algorithm to body
     if(getSelectedAlgorithm() === 'ch'){
         matrix = getSelectedAlgorithm() + stringifyPoints(points);
     }else{
         matrix = getSelectedAlgorithm() + matrix;
     }
 
-    //console.log("FJDKLSFJLKDSJFDSJKFJDSFJLDSJFLKDSJFLKDSJF");
-    //console.log(matrix);
+    // Add visualization toggle to body
+    if(getVisualizationToggle() == true){
+        matrix = "1" + matrix;
+    }else{
+        matrix = "0" + matrix;
+    }
+
     const url = '/matrix';
     fetch(url, {
         method: 'POST',
@@ -198,11 +212,20 @@ function requestServer(matrix) {
     })  .then(response => response.text())
         .then(response => {
             // Splits toString() of Cities object and get data
-            //console.log(response);
+            console.log(response);
             let cityArray;
             let lengthString = response;
+            let visualizationPoints = response;
+            if(getVisualizationToggle() == true){
+                visualizationPoints = visualizationPoints.slice(visualizationPoints.indexOf("}]}") + 3);
+                visualizationPoints = visualizationPoints.split('\n');
+                for(let i = 0; i < visualizationPoints.length; i++){
+                    visualizationPoints[i] = visualizationPoints[i].split(";");
+                    visualizationPoints[i].splice(visualizationPoints[i].length-1, 1);
+                }
+            }
             if(getSelectedAlgorithm() === 'ch'){
-                // Special pasing for Convex hull because it returns coordinates
+                // Special parsing for Convex hull because it returns coordinates
                 response = response.slice(response.indexOf("sortedCities=[") + 14);
                 cityArray = response.split("City{cityName=");
                 for(let i = 0; i < cityArray.length; i++){
@@ -224,19 +247,28 @@ function requestServer(matrix) {
                 }
             }
             // Get distance from result
-            //console.log("TESTSTSTSDTST")
-            //console.log(lengthString);
 
             lengthString = lengthString.slice(lengthString.indexOf("Cities{distance=") + 16, lengthString.indexOf(","));
             let lengthFloat = parseFloat(lengthString).toFixed(2)
 
-            //console.log("TESTESTETSTESTESTESTETSTETSTETST")
-            //console.log(lengthFloat);
 
             onClickPositionView.innerHTML = "Length of the route: " + lengthFloat + " km";
+
             // Print lines on map
-            printLines(cityArray);
+            if(getVisualizationToggle() == true){
+                printVisualization(visualizationPoints);
+            }else{
+                printLines(cityArray, false);
+            }
     });
+}
+
+async function printVisualization(visualizationPoints){
+    for(let i = 0; i < visualizationPoints.length; i++){
+        console.log(i);
+        await printLines(visualizationPoints[i], true)
+    }
+
 }
 
 function stringifyArrayPoints(string) {
@@ -246,23 +278,22 @@ function stringifyArrayPoints(string) {
     return array;
 }
 
+
 // Prints Lines between markers on map
-async function printLines(cityArray) {
+async function printLines(cityArray, removeLayer) {
     let all_points = [];
 
     let city_array_counter = 0;
     for (let i = 0; i < cityArray.length; i++) {
         if(getSelectedAlgorithm() === 'ch'){
-            //console.log(cityArray);
-            //console.log(cityArray[city_array_counter]);
-            //all_points.push(JSON.parse(cityArray[city_array_counter]));
             all_points.push(stringifyArrayPoints(cityArray[city_array_counter]));
         }else{
             all_points.push(points[labels.indexOf(cityArray[city_array_counter])])
         }
-        //console.log(all_points);
         city_array_counter++;
-        if(i === 0) {
+        // Check if layer is already existing
+        let mapSource = map.getSource('route');
+        if(mapSource == undefined) {
             // Add source with coordinates
             map.addSource('route', {
                 'type': 'geojson',
@@ -327,12 +358,5 @@ function haversine_distance(mk1, mk2) {
 
     var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
     d *= 1.609344
-    //console.log("return "+ d + " for points " + mk1 + " and "+ mk2);
-    //console.log(mk1.lat);
-    //console.log(mk1.lng);
-    //console.log()
-    //console.log(mk2.lat);
-    //console.log(mk2.lng);
-    //console.log("new version");
     return d;
 }
