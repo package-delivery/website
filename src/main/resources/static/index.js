@@ -269,7 +269,7 @@ function requestServer(matrix) {
             if(getVisualizationToggle() == true){
                 printVisualization(visualizationPoints, cityArray);
             }else{
-                printLines(cityArray);
+                printLines(cityArray, 1, 0);
             }
     });
 }
@@ -278,9 +278,9 @@ async function printVisualization(visualizationPoints, cityArray){
     console.log("Steps: " + visualizationPoints.length);
     for(let i = 0; i < visualizationPoints.length; i++){
         console.log(i);
-        await printLines(visualizationPoints[i])
+        await printLines(visualizationPoints[i], 0, 1)
     }
-    printLines(cityArray);
+    printLines(cityArray, 1, 0);
 
 }
 
@@ -293,7 +293,7 @@ function stringifyArrayPoints(string) {
 
 
 // Prints Lines between markers on map
-async function printLines(cityArray) {
+async function printLines(cityArray, drawTime, displayTime) {
     let all_points = [];
 
     let city_array_counter = 0;
@@ -346,8 +346,15 @@ async function printLines(cityArray) {
         }
 
         // Check slider for value and then wait that amount 
-        await sleep(simulationSpeed.value * 10);
+        if(drawTime === 1){
+            drawTime = simulationSpeed.value * 10;
+        }
+        await sleep(drawTime);
     }
+    if(displayTime === 1){
+        displayTime = simulationSpeed.value * 10;
+    }
+    await sleep(displayTime);
 }
 
 function sleep(ms) {
